@@ -55,7 +55,7 @@ form {
 
 
 .formInput {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 </style>
 

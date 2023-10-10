@@ -18,8 +18,8 @@ export default {
     align-self: flex-end;
     padding: 10px 15px;
     background: none;
-    color: rgb(135, 38, 165);
-    border: 1px solid rgb(135, 38, 165);
+    color: rgb(33, 109, 153);
+    border: 2px solid rgb(33, 109, 153);
     border-radius: 10px;
 }
 </style>

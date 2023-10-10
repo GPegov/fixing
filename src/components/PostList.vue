@@ -12,7 +12,7 @@
     
     </div>
     <h2 v-else style="
-    color: rgb(135, 38, 165);
+    color: rgb(33, 109, 153);
     margin-top: 15px;
     ">
         Укажите гостей
@@ -38,12 +38,17 @@ export default {
 
 <style scoped>
 .registered {
-    margin-top: 15px;
+    color: rgb(68, 68, 68);
+    margin-top: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: center;
+    font-size: 22pt;
+    font-family:'Circe Light', sans-serif !important;
+
 }
-.user-list {
-    display: inline-block;
-    margin-right: 10px;
-}
+
+
 .user-list-enter-active,
 .user-list-leave-active{
     transition: all 0.7s ease;

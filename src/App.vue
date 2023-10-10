@@ -1,16 +1,26 @@
 <template>
     <div class="app">
 
+        <div class='header_main'>
+            <my-header
+            
+            />
+            <my-photo-book
+            
+            />
+        </div>
+
+
         <div class="app__btns">
-            <my-button
+            <my-button class="addGuest"
                 @click="showDialog"
                 
             >
-                Добавить гостя
+                Подтвердите присутствие
             </my-button>
-            
                         
         </div>
+
         
         <my-dialog v-model:show="dialogVisible">
             <post-form
@@ -21,31 +31,50 @@
         :posts="posts"
         @remove="removePost"
         />
-        
+        <my-parents/>
+
+        <h2 class="header_place">Место проведения мероприятия</h2>
+        <div class="placeDescription">
+            <div class="placeDescription1">
+                <h3>Сбор Гостей</h3>
+                <p>Территориальный отдел ЗАГСа г. Воркуты</p>
+                <p>Адрес: г. Воркута, ул. Ленина д. 54</p> 
+            </div>
+            <div class="placeDescription2">
+                <h3>Торжество</h3>
+                <p>Ресторан "Додо Пицца"</p>
+                <p>Адрес: г. Воркута, ул. Ленина д. 35</p> 
+            </div>
+        </div>
     </div>
+     
+
+    
 </template>
 
 
 <script>
 import PostForm from '@/components/PostForm.vue'
 import PostList from '@/components/PostList.vue'
+import MyPhotoBook from './components/MyPhotoBook.vue';
+import MyHeader from './components/MyHeader.vue';
+import VueExpandableImage from 'vue-expandable-image';
+import MyMap from './components/MyMap.vue';
 
 
     export default {
-        components: {PostList, PostForm,},
+        components: { PostList, PostForm, MyPhotoBook, MyHeader, MyMap, VueExpandableImage, },
     data() {
         return {
             posts: [
-                { id: 1, title: 'Василий', body: 'Пупкин', },
-                { id: 2, title: 'Евгений', body: 'Пригожин', },
-                { id: 3, title: 'Елена', body: 'Головач', },
+                { id: 1, title: 'Роберт', body: 'Рождественский', },
+                { id: 2, title: 'Лейба', body: 'Бронштейн', },
+                { id: 3, title: 'Иосиф', body: 'Джугашвили', },
+                { id: 4, title: 'Теодор', body: 'Драйзер', },
+                { id: 5, title: 'Руперт', body: 'Мёрдок', },
+                { id: 6, title: 'Ли Харви', body: 'Освальд', },
             ],
             dialogVisible: false,
-            options: [
-                {name: 'трус', value: 1},
-                {name: 'балбес', value: 2},
-                {name: 'бывалый', value: 3},
-            ],
             selected:'Select',
             
             //selectedSort: '',
@@ -75,13 +104,15 @@ import PostList from '@/components/PostList.vue'
 
 <style>
 * {
-    
-    margin: 0px;
-    padding: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
     box-sizing: border-box;
 }
 .app {
-    padding:20px;
+    
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -94,6 +125,43 @@ import PostList from '@/components/PostList.vue'
 .app__btns {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
+.addGuest {
+    font-size: 18pt;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.header_place {
+    color: rgb(68, 68, 68);
+    margin-top: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    text-align: center;
+    font-size: 22pt;
+    font-family:'Circe Light', sans-serif !important;
+}
+.placeDescription {
+    display: flex;
+    flex-direction: row;
+    color: rgb(68, 68, 68);
+    margin-top: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    text-align: center;
+    font-family:'Circe Light', sans-serif !important;
+
+}
+.placeDescription1 {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%
+}
+.placeDescription2 {
+    display: flex;
+    flex-direction: column;
+}
+
 </style>

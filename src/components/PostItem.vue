@@ -30,16 +30,19 @@ export default {
 
 <style scoped>
 .post {
-    padding: 15px;
-    border: 1px solid rgb(135, 38, 165);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    border: 1px solid rgb(33, 109, 153);
     margin-top: 25px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 .registered {
     margin-top: 15px;
-    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 </style>
