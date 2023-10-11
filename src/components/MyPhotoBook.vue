@@ -1,12 +1,16 @@
 <template>
     <h2 class="pbHeader">Фотокнига</h2>
     <div class="photoBook">
-        <div class="row1">
+        <div class="photoBookRow">
             <img class="pbPhoto" src="./img/photoBook/pb1.jpg"/>
             <img class="pbPhoto" src="./img/photoBook/pb2.jpg" alt=""/>
-            <img class="pbPhoto" src="./img/photoBook/pb3.png" alt=""/>
+        </div>
+        <div class="photoBookRow">
             <img class="pbPhoto" src="./img/photoBook/pb4.jpg" alt=""/>
             <img class="pbPhoto" src="./img/photoBook/pb5.jpg" alt=""/>
+        </div>
+        <div class="photoBookRow">
+            <img class="pbPhoto" src="./img/photoBook/pb3.png" alt=""/>
             <img class="pbPhoto" src="./img/photoBook/pb6.jpg" alt=""/>
         </div>
         
@@ -26,30 +30,27 @@ export default {
 
 
 <style scoped>
-.row1 {
+.photoBookRow {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     max-width: 50%;
-    padding-left: 10px;
-    padding-right: 10px;
 
-    
 }
 
 
 .photoBook {
     display: flex;
-    flex-direction: row;
-    
-    
-    
+    flex-direction: column;
+
 }
 .pbPhoto{
    max-width: 100%;
-   padding-top: 15px;
    
-   
-    
+}
+img {
+    box-sizing: border-box;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
 }
 .pbHeader{
     color: rgb(68, 68, 68);
@@ -66,15 +67,10 @@ export default {
 .photoBook {
     flex-direction: column;
 }
-.row1 {
+.photoBookRow {
     max-width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+    flex-direction: column;
 }
-.row2 {
-    max-width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+
 }
 </style>

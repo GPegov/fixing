@@ -7,6 +7,7 @@ import MyMap from '@/components/MyMap.vue'
 import Parents from '@/components/UI/Parents.vue'
 
 
+
 export default [
     MyButton,
     MyInput,
@@ -14,5 +15,6 @@ export default [
     MyHeader,
     VueExpandableImage,
     MyMap,
-    Parents
+    Parents,
+    MyPlace,
 ]

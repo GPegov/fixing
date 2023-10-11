@@ -67,12 +67,7 @@ import MyMap from './components/MyMap.vue';
     data() {
         return {
             posts: [
-                { id: 1, title: 'Роберт', body: 'Рождественский', },
-                { id: 2, title: 'Лейба', body: 'Бронштейн', },
-                { id: 3, title: 'Иосиф', body: 'Джугашвили', },
-                { id: 4, title: 'Теодор', body: 'Драйзер', },
-                { id: 5, title: 'Руперт', body: 'Мёрдок', },
-                { id: 6, title: 'Ли Харви', body: 'Освальд', },
+                
             ],
             dialogVisible: false,
             selected:'Select',
