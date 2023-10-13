@@ -22,14 +22,15 @@
         </div>
 
         
-        <my-dialog v-model:show="dialogVisible">
-            <post-form
-        @create = 'createPost'
+        <my-dialog 
+            v-model:show="dialogVisible">
+        <post-form
+            @create = 'createPost'
         />
         </my-dialog>
         <post-list
-        :posts="posts"
-        @remove="removePost"
+            :posts="posts"
+            @remove="removePost"
         />
         <my-parents/>
         <my-place/>
@@ -42,18 +43,30 @@
 
 
 <script>
+import MyDialog from '@/components/UI/MyDialog.vue';
+import MyInput from '@/components/UI/MyInput.vue';
+import MyButton from '@/components/UI/MyButton.vue'
 import PostForm from '@/components/PostForm.vue'
 import PostList from '@/components/PostList.vue'
-import MyPhotoBook from './components/MyPhotoBook.vue';
-import MyHeader from './components/MyHeader.vue';
-
-import MyMap from './components/MyMap.vue';
-import MyPlace from './components/MyPlace.vue';
-import MyParents from './components/MyParents.vue';
+import MyPhotoBook from '@/components/MyPhotoBook.vue';
+import MyHeader from '@/components/MyHeader.vue';
+import MyMap from '@/components/MyMap.vue';
+import MyPlace from '@/components/MyPlace.vue';
+import MyParents from '@/components/MyParents.vue';
 
 
     export default {
-        components: { PostList, PostForm, MyPhotoBook, MyHeader, MyMap,  MyPlace, MyParents },
+        components: { 
+            MyDialog, 
+            MyInput, 
+            MyButton, 
+            PostList, 
+            PostForm, 
+            MyPhotoBook, 
+            MyHeader, 
+            MyMap,  
+            MyPlace, 
+            MyParents },
     data() {
         return {
             posts: [
