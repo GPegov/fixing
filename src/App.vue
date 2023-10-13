@@ -32,22 +32,10 @@
         @remove="removePost"
         />
         <my-parents/>
-
-        <h2 class="header_place">Место проведения мероприятия</h2>
-        <div class="placeDescription">
-            <div class="placeDescription1">
-                <h3>Сбор Гостей</h3>
-                <p>Территориальный отдел ЗАГСа г. Воркуты</p>
-                <p>Адрес: г. Воркута, ул. Ленина д. 54</p> 
-            </div>
-            <div class="placeDescription2">
-                <h3>Торжество</h3>
-                <p>Ресторан "Додо Пицца"</p>
-                <p>Адрес: г. Воркута, ул. Ленина д. 35</p> 
-            </div>
-        </div>
+        <my-place/>
     </div>
-     
+    
+
 
     
 </template>
@@ -58,12 +46,14 @@ import PostForm from '@/components/PostForm.vue'
 import PostList from '@/components/PostList.vue'
 import MyPhotoBook from './components/MyPhotoBook.vue';
 import MyHeader from './components/MyHeader.vue';
-import VueExpandableImage from 'vue-expandable-image';
+
 import MyMap from './components/MyMap.vue';
+import MyPlace from './components/MyPlace.vue';
+import MyParents from './components/MyParents.vue';
 
 
     export default {
-        components: { PostList, PostForm, MyPhotoBook, MyHeader, MyMap, VueExpandableImage, },
+        components: { PostList, PostForm, MyPhotoBook, MyHeader, MyMap,  MyPlace, MyParents },
     data() {
         return {
             posts: [

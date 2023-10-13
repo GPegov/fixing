@@ -36,8 +36,8 @@
     color: rgb(68, 68, 68);
     margin-top: 25px;
     margin-bottom: 35px;
-    display: flex;
-    text-align: center;
+    justify-content: center;
+    
     font-family:'Circe Light', sans-serif !important;
 
 }
