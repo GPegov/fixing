@@ -34,6 +34,8 @@
         />
         <my-parents/>
         <my-place/>
+        <my-slider/>
+        
     </div>
     
 
@@ -53,6 +55,13 @@ import MyHeader from '@/components/MyHeader.vue';
 import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
+import MySlider from './components/MySlider.vue';
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 
 
     export default {
@@ -66,7 +75,12 @@ import MyParents from '@/components/MyParents.vue';
             MyHeader, 
             MyMap,  
             MyPlace, 
-            MyParents },
+            MyParents,
+            Swiper,
+            MySlider,
+            Navigation,
+            Pagination, 
+        },
     data() {
         return {
             posts: [
