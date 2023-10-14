@@ -10,8 +10,12 @@
             <img class="pbPhoto" src="./img/photoBook/pb5.jpg" alt=""/>
         </div>
         <div class="photoBookRow">
-            <img class="pbPhoto" src="./img/photoBook/pb3.png" alt=""/>
+            <img class="pbPhoto" src="./img/photoBook/pb3.jpg" alt=""/>
             <img class="pbPhoto" src="./img/photoBook/pb6.jpg" alt=""/>
+        </div>
+        <div class="photoBookRow">
+            <img class="pbPhoto" src="./img/photoBook/pb7.jpg" alt=""/>
+            <img class="pbPhoto" src="./img/photoBook/pb8.jpg" alt=""/>
         </div>
         
     </div>
