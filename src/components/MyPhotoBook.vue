@@ -23,11 +23,11 @@
 
 
 <script>
-import VueExpandableImage from 'vue-expandable-image';
+
 
 export default {
     name: 'my-photoBook',
-    components: { VueExpandableImage }
+    
 
 }
 </script>

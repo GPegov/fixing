@@ -1,7 +1,7 @@
 <template>
     <swiper
-      :slides-per-view="1.2"
-      :space-between="30"
+      :slides-per-view="1"
+      :space-between="50"
       
     >
     <swiper-slide><img src="./img/photoBook/pb1.jpg"></swiper-slide>;
@@ -16,7 +16,7 @@
     </swiper>
   </template>
   <script>
-    // Import Swiper Vue.js components
+    
     import { Swiper, SwiperSlide } from 'swiper/vue';
   
     // Import Swiper styles
@@ -41,3 +41,9 @@
       },
     };
   </script>
+      
+      
+      
+      
+      
+   

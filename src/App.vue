@@ -2,6 +2,7 @@
     <div class="app">
 
         <div class='header_main'>
+            <my-slider/>
             <my-header
             
             />
@@ -34,7 +35,10 @@
         />
         <my-parents/>
         <my-place/>
-        <my-slider/>
+        <my-test/>
+        
+        
+        
         
     </div>
     
@@ -55,32 +59,30 @@ import MyHeader from '@/components/MyHeader.vue';
 import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
-import MySlider from './components/MySlider.vue';
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import MyTest from '@/components/MyTest.vue'
+
+
+
 
 
 
     export default {
-        components: { 
-            MyDialog, 
-            MyInput, 
-            MyButton, 
-            PostList, 
-            PostForm, 
-            MyPhotoBook, 
-            MyHeader, 
-            MyMap,  
-            MyPlace, 
-            MyParents,
-            Swiper,
-            MySlider,
-            Navigation,
-            Pagination, 
-        },
+        components: {
+    MyDialog,
+    MyInput,
+    MyButton,
+    PostList,
+    PostForm,
+    MyPhotoBook,
+    MyHeader,
+    MyMap,
+    MyPlace,
+    MyParents,
+    MyTest,
+    
+    
+    
+},
     data() {
         return {
             posts: [
@@ -89,7 +91,6 @@ import 'swiper/css/pagination';
             dialogVisible: false,
             selected:'Select',
             
-            //selectedSort: '',
             
         }; 
     },

@@ -54,9 +54,7 @@ export default {
     padding-right: 20px;
     text-align: center;
 }
-.parentPhoto {
-    width: 50%;
-}
+
 
 @media screen and (min-width: 500px) {
 .parentsPhotos {
