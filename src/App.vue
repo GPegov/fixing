@@ -21,7 +21,7 @@
             </my-button>
                         
         </div>
-
+        <my-ask-guests/>
         
         <my-dialog 
             v-model:show="dialogVisible">
@@ -34,16 +34,10 @@
             @remove="removePost"
         />
         <my-parents/>
-        <my-place/>
         <my-test/>
-        
-        
-        
+        <my-place/>
         
     </div>
-    
-
-
     
 </template>
 
@@ -60,6 +54,7 @@ import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyTest from '@/components/MyTest.vue'
+import MyAskGuests from './components/MyAskGuests.vue';
 
 
 
@@ -79,6 +74,7 @@ import MyTest from '@/components/MyTest.vue'
     MyPlace,
     MyParents,
     MyTest,
+    MyAskGuests,
     
     
     
