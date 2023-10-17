@@ -2,7 +2,7 @@
     <div class="app">
 
         <div class='header_main'>
-            <my-slider/>
+            
             <my-header
             
             />
@@ -10,29 +10,10 @@
             
             />
         </div>
-
-
-        <div class="app__btns">
-            <my-button class="addGuest"
-                @click="showDialog"
-                
-            >
-                Подтвердите присутствие
-            </my-button>
-                        
-        </div>
-        <my-ask-guests/>
         
-        <my-dialog 
-            v-model:show="dialogVisible">
-        <post-form
-            @create = 'createPost'
-        />
-        </my-dialog>
-        <post-list
-            :posts="posts"
-            @remove="removePost"
-        />
+
+        <my-ask-guests/>
+
         <my-parents/>
         <my-test/>
         <my-place/>
@@ -43,6 +24,7 @@
 
 
 <script>
+
 import MyDialog from '@/components/UI/MyDialog.vue';
 import MyInput from '@/components/UI/MyInput.vue';
 import MyButton from '@/components/UI/MyButton.vue'
@@ -54,7 +36,7 @@ import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyTest from '@/components/MyTest.vue'
-import MyAskGuests from './components/MyAskGuests.vue';
+import MyAskGuests from '@/components/MyAskGuests.vue';
 
 
 

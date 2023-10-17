@@ -41,8 +41,4 @@ export default {
     justify-content: space-between;
     
 }
-.registered {
-    margin-top: 15px;
-    font-family: 'Courier New', Courier, monospace;
-}
 </style>

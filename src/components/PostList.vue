@@ -9,9 +9,6 @@
             />
         </div>
     
-        <button name="submit" type="submit" class="btn">
-            Отправить
-        </button>
     </transition-group>
 
 </template>

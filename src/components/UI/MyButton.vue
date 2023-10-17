@@ -12,10 +12,10 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .btn {
     
-    align-self: flex-end;
+    
     padding: 10px 15px;
     background: none;
     color: rgb(33, 109, 153);

@@ -49,11 +49,7 @@ export default {
 form {
     display: flex;
     flex-direction: column;
-    
-
 }
-
-
 .formInput {
     font-family: 'Courier New', Courier, monospace;
 }
