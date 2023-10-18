@@ -30,15 +30,16 @@ export default {
 
 <style scoped>
 .post {
-    margin-left: 10px;
-    margin-right: 10px;
+    
     padding: 20px;
     border: 1px solid rgb(33, 109, 153);
-    margin-top: 25px;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    max-width: 400px;
     
 }
 </style>

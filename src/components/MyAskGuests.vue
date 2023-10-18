@@ -10,7 +10,8 @@
                 </my-button>
                 </div>
                 <div class="willNotBe">
-                <my-button
+                <my-button 
+                    v-if="posts.length === 0"
                     v-on:click="say('Ну и пошёл нахуй тогда ')"
                 >
                     К сожалению, присутствовать не смогу
@@ -31,39 +32,118 @@
         </div>  
     
 
-        <div class="askGuestsMore" name="pair" v-if="posts.length > 0">
-            <div class="askGuestsMoreButton">
-                    <my-button>Буду один / одна</my-button>
+        <div 
+            class="askGuestsMore" 
+            name="pair" 
+            v-if="(posts.length > 0) && (counter === 0)">
+            
+            <div 
+                class="askGuestsMoreButton"
+                name="alone"
+            >
+                <my-button
+                @click="counter = 1,
+                alone = 1"
+                >
+                    Буду один / одна
+                </my-button>
             </div>
-            <div class="askGuestsMoreButton">
-                    <my-button>Буду с парой</my-button>
+            <div 
+                class="askGuestsMoreButton"
+                name="withCouple"
+            >
+                <my-button
+                @click="counter = 1,
+                couple = 1"
+                >
+                    Буду с парой
+                </my-button>
             </div>
         </div>
-        <div class="askGuestsMore" name="childrenAndCars" >
-            <div class="askGuestsMoreButton">
-                <my-button>С детьми</my-button>
+        
+        
+        
+        
+        <div 
+            class="askGuestsMore" 
+            name="childrenAndCars" 
+            v-if="counter === 1">
+
+            <div 
+                class="askGuestsMoreButton"
+                name="withKids"
+            >
+                <my-button 
+                @click="counter = 2,
+                        withChildren = 1"
+
+                >
+                    С детьми
+                </my-button>
+            </div>
+            <div 
+                class="askGuestsMoreButton"
+                name="withoutKids"
+            >
+                <my-button
+                @click="counter = 2, 
+                        withoutChildren = 1"
+
+                >
+                    Без детей
+                </my-button>
             </div>
             <div class="askGuestsMoreButton">
-                    <my-button>Без детей</my-button>
-            </div>
-            <div class="askGuestsMoreButton">
-                    <my-button>На машине</my-button>
+                <my-button>
+                    На машине
+                </my-button>
             </div> 
         </div>
-        <div class="askGuestsMore" name="Food">
-            <div class="askGuestsMoreButton">
-                    <my-button>Не важно</my-button>
+        
+        
+        
+        
+        <div 
+            v-if="counter === 2" 
+            class="askGuestsMore" 
+            name="Food">
+            <div 
+                class="askGuestsMoreButton"
+            >
+                <my-button
+                @click="counter = 3,
+                foodDoesntMatter = 1"
+                >
+                    Не важно
+                </my-button>
+            </div>
+            <div 
+                class="askGuestsMoreButton"
+
+            >
+                <my-button
+                @click="counter = 3,
+                foodMeat = 1"
+                >
+                    Мясо
+                </my-button>
             </div>
             <div class="askGuestsMoreButton">
-                    <my-button>Мясо</my-button>
-            </div>
-            <div class="askGuestsMoreButton">
-                    <my-button>Рыба</my-button>
+                <my-button
+                @click="counter = 3,
+                foodFish = 1"
+                >
+                    Рыба
+                </my-button>
             </div> 
         </div>
     </div>
     <div>
-        <button class="sendResults" type="submit" >
+        <button 
+
+            v-if="counter === 3" 
+            class="sendResults" 
+            type="submit" >
             Отправить
         </button>
     </div>
@@ -94,7 +174,21 @@
             ],
             dialogVisible: false,
             selected:'Select',
+
+            alone: 0,
+            couple :0,
+
+            withChildren: 0,
+            withoutChildren: 0,
             
+
+            foodDoesntMatter: 0,
+            foodMeat: 0,
+            foodFish: 0,
+
+            counter: 0,
+
+
             
         }; 
     },
@@ -115,6 +209,8 @@
         say: function (message) {
         alert(message)
         },
+        
+        
 
     }
     }
@@ -146,28 +242,7 @@
 .askGuestsMoreButton {
     padding: 20px 20px 20px 20px;
 }
-.participation {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    max-width: 400px;
-}
-.pair {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.childrenAndCars {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.Food {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 .sendResults {
     padding: 10px 15px;
     font-size: 12pt;
@@ -175,7 +250,11 @@
     color: rgb(33, 109, 153);
     border: 2px solid rgb(33, 109, 153);
     border-radius: 10px;
+    display: flex;
+    margin: auto;
 }
+
+
 
 
 </style>
