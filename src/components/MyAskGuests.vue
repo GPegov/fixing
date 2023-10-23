@@ -35,16 +35,16 @@
         <div 
             class="askGuestsMore" 
             name="pair" 
-            v-if="(posts.length > 0) && (counter === 0)">
+            v-if="(posts.length > 0)">
             
             <div 
                 class="askGuestsMoreButton"
-                name="alone"
             >
-                <my-button
+                <my-button 
+                id="byMyself"
                 @click="counter = 1,
-                alone = 1"
-                >
+                alone = 1,
+                pressed()">
                     Буду один / одна
                 </my-button>
             </div>
@@ -67,7 +67,7 @@
         <div 
             class="askGuestsMore" 
             name="childrenAndCars" 
-            v-if="counter === 1">
+            v-if="counter >= 1">
 
             <div 
                 class="askGuestsMoreButton"
@@ -94,7 +94,8 @@
                 </my-button>
             </div>
             <div class="askGuestsMoreButton">
-                <my-button>
+                <my-button
+                @click="onCar = 1">
                     На машине
                 </my-button>
             </div> 
@@ -104,7 +105,7 @@
         
         
         <div 
-            v-if="counter === 2" 
+            v-if="counter >= 2" 
             class="askGuestsMore" 
             name="Food">
             <div 
@@ -151,6 +152,7 @@
 </template>
 
 <script>
+
     import MyDialog from '@/components/UI/MyDialog.vue';
     import MyInput from '@/components/UI/MyInput.vue';
     import MyButton from '@/components/UI/MyButton.vue'
@@ -209,19 +211,26 @@
         say: function (message) {
         alert(message)
         },
+        pressed () {
         
         
-
+            }
+        }
+        
+        
     }
-    }
+    
     
    
     
-
+    
 </script>
 
 <style scoped>
-
+.pressedButton {
+    background-color: rgb(0, 155, 155);
+    color: black;
+}
 .askWillGuestsCome {
     display: flex;
     flex-direction: column;
