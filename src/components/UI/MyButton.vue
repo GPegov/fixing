@@ -9,9 +9,6 @@
 export default {
     name: 'my-button'
 }
-methods: {
-
-}
 </script>
 
 

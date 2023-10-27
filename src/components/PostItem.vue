@@ -6,7 +6,7 @@
             </div>
             <div class="post__btns">    
                 <my-button
-                @click="$emit('remove', post)"
+                @click="($emit('remove', post)), counter = 1"
                 >
                     Удалить
                 </my-button>
@@ -22,7 +22,11 @@ export default {
         post: {
             type: Object,
             required: true,
-        }
+        },
+        counter: {
+            type: Number, 
+            required: true,
+        },
     }
 }
 </script>

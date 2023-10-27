@@ -12,7 +12,7 @@
                 <div class="willNotBe">
                 <my-button 
                     v-if="posts.length === 0"
-                    v-on:click="say('Ну и пошёл нахуй тогда ')"
+                    v-on:click="say('Нам очень жаль, что Вы не сможете принять участие в нашем торжестве')"
                 >
                     К сожалению, присутствовать не смогу
                 </my-button>            
@@ -33,26 +33,21 @@
     
 
         <div 
-            class="askGuestsMore" 
-            name="pair" 
+            class="askGuestsMore"
             v-if="(posts.length > 0)">
-            
-            <div 
+            <div>
+                <my-button
                 class="askGuestsMoreButton"
-            >
-                <my-button 
-                id="byMyself"
+                onclick="this.style.background='black'"
                 @click="counter = 1,
-                alone = 1,
-                pressed()">
+                alone = 1
+                ">
                     Буду один / одна
                 </my-button>
             </div>
-            <div 
-                class="askGuestsMoreButton"
-                name="withCouple"
-            >
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="counter = 1,
                 couple = 1"
                 >
@@ -65,15 +60,13 @@
         
         
         <div 
-            class="askGuestsMore" 
-            name="childrenAndCars" 
-            v-if="counter >= 1">
-
-            <div 
-                class="askGuestsMoreButton"
-                name="withKids"
+            class="askGuestsMore"
+            v-if="((posts.length > 0) && (counter >= 1))"
             >
-                <my-button 
+
+            <div>
+                <my-button
+                class="askGuestsMoreButton" 
                 @click="counter = 2,
                         withChildren = 1"
 
@@ -81,11 +74,9 @@
                     С детьми
                 </my-button>
             </div>
-            <div 
-                class="askGuestsMoreButton"
-                name="withoutKids"
-            >
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="counter = 2, 
                         withoutChildren = 1"
 
@@ -93,8 +84,9 @@
                     Без детей
                 </my-button>
             </div>
-            <div class="askGuestsMoreButton">
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="onCar = 1">
                     На машине
                 </my-button>
@@ -105,34 +97,32 @@
         
         
         <div 
-            v-if="counter >= 2" 
+            v-if="((posts.length > 0) && (counter >= 2))" 
             class="askGuestsMore" 
             name="Food">
-            <div 
-                class="askGuestsMoreButton"
-            >
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="counter = 3,
-                foodDoesntMatter = 1"
+                        foodDoesntMatter = 1"
                 >
                     Не важно
                 </my-button>
             </div>
-            <div 
-                class="askGuestsMoreButton"
-
-            >
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="counter = 3,
-                foodMeat = 1"
+                        foodMeat = 1"
                 >
                     Мясо
                 </my-button>
             </div>
-            <div class="askGuestsMoreButton">
+            <div>
                 <my-button
+                class="askGuestsMoreButton"
                 @click="counter = 3,
-                foodFish = 1"
+                        foodFish = 1"
                 >
                     Рыба
                 </my-button>
@@ -142,7 +132,7 @@
     <div>
         <button 
 
-            v-if="counter === 3" 
+            v-if="((posts.length > 0) && (counter >= 3))" 
             class="sendResults" 
             type="submit" >
             Отправить
@@ -210,12 +200,20 @@
         },
         say: function (message) {
         alert(message)
-        },
-        pressed () {
-        
-        
-            }
         }
+        
+            
+        
+            
+        },
+    computed: {
+        styles: function() {
+            return {
+                background: this.backgroundColor
+            }
+            
+        }
+    }
         
         
     }
@@ -227,13 +225,11 @@
 </script>
 
 <style scoped>
-.pressedButton {
-    background-color: rgb(0, 155, 155);
-    color: black;
-}
+
 .askWillGuestsCome {
     display: flex;
     flex-direction: column;
+    
     
 }
 .willNotBe {
@@ -248,9 +244,6 @@
     justify-content: center;
     
 }
-.askGuestsMoreButton {
-    padding: 20px 20px 20px 20px;
-}
 
 .sendResults {
     padding: 10px 15px;
@@ -262,8 +255,14 @@
     display: flex;
     margin: auto;
 }
+.askGuestsMoreButton {
+    box-shadow: 0 0 40px #7d2ae8;
+    padding: 15px 20px 15px 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    
 
-
-
+}
 
 </style>
