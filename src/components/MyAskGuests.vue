@@ -38,7 +38,8 @@
             <div>
                 <my-button
                 class="askGuestsMoreButton"
-                onclick="this.style.background='black'"
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 @click="counter = 1,
                 alone = 1
                 ">
@@ -47,6 +48,8 @@
             </div>
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="counter = 1,
                 couple = 1"
@@ -66,6 +69,8 @@
 
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton" 
                 @click="counter = 2,
                         withChildren = 1"
@@ -76,6 +81,8 @@
             </div>
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="counter = 2, 
                         withoutChildren = 1"
@@ -86,6 +93,8 @@
             </div>
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="onCar = 1">
                     На машине
@@ -102,6 +111,8 @@
             name="Food">
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="counter = 3,
                         foodDoesntMatter = 1"
@@ -111,6 +122,8 @@
             </div>
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="counter = 3,
                         foodMeat = 1"
@@ -120,6 +133,8 @@
             </div>
             <div>
                 <my-button
+                onclick="this.style.background='#a676e6',
+                         this.style.color='white'"
                 class="askGuestsMoreButton"
                 @click="counter = 3,
                         foodFish = 1"
@@ -131,14 +146,15 @@
     </div>
     <div>
         <button 
-
+            onclick="this.style.background='#a676e6',
+                     this.style.color='white'"
             v-if="((posts.length > 0) && (counter >= 3))" 
             class="sendResults" 
             type="submit" >
             Отправить
         </button>
     </div>
-
+    
 </template>
 
 <script>
@@ -200,21 +216,13 @@
         },
         say: function (message) {
         alert(message)
-        }
-        
-            
-        
-            
         },
-    computed: {
-        styles: function() {
-            return {
-                background: this.backgroundColor
-            }
+       
+        
+            
+        
             
         }
-    }
-        
         
     }
     
@@ -225,6 +233,10 @@
 </script>
 
 <style scoped>
+.pressedButt {
+    background:#a676e6;
+    color: white;
+}
 
 .askWillGuestsCome {
     display: flex;
@@ -246,22 +258,34 @@
 }
 
 .sendResults {
-    padding: 10px 15px;
-    font-size: 12pt;
+    padding: 15px 20px;
+    font-size: 16pt;
     background: none;
     color: rgb(33, 109, 153);
     border: 2px solid rgb(33, 109, 153);
     border-radius: 10px;
     display: flex;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    cursor:pointer;
+    transition: 0.4s;
+}
+.sendResults:hover{
+    background-color: #cae0e6;
+    
+}
+.sendResults:active {
+    background-color: #6d797c;
+
 }
 .askGuestsMoreButton {
-    box-shadow: 0 0 40px #7d2ae8;
+    box-shadow: 0 0 20px #9e68e6;
     padding: 15px 20px 15px 20px;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 30px;
-    
+   
 
 }
 
