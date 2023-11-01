@@ -50,7 +50,7 @@ export default {
     font-family:'Circe Light', sans-serif !important;
 }
 .parentPhotoAndText {
-    padding-left: 20px;
+    
     padding-right: 20px;
     text-align: center;
 }

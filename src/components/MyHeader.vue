@@ -1,8 +1,5 @@
 <template>
-    <div class="header">
-        
-        <img class="headerPhoto" src="./img/222.jpg" alt="">
-    </div>
+    
     <div class="invitation">
         <img class="invitHeader" src="./img/7.png" alt="">
         <h2 class="theDate">Торжество состоится 30 февраля 2024г. в 15.00</h2>

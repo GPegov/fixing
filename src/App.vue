@@ -1,21 +1,18 @@
 <template>
+        
+    
     <div class="app">
 
-        <div class='header_main'>
-            
-            <my-header
-            
-            />
-            <my-photo-book
-            
-            />
-        </div>
         
 
+        <my-test/>
+ 
+        <my-header/>
+       
         <my-ask-guests/>
 
         <my-parents/>
-        <my-test/>
+        
         <my-place/>
         
     </div>
@@ -35,8 +32,9 @@ import MyHeader from '@/components/MyHeader.vue';
 import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
-import MyTest from '@/components/MyTest.vue'
+import MyTest from '@/components/MyTest.vue';
 import MyAskGuests from '@/components/MyAskGuests.vue';
+
 
 
 
@@ -57,6 +55,8 @@ import MyAskGuests from '@/components/MyAskGuests.vue';
     MyParents,
     MyTest,
     MyAskGuests,
+    
+    
     
     
     
