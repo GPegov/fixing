@@ -4,7 +4,7 @@
     <div class="app">
 
         
-
+        <my-swiper/>
         <my-test/>
  
         <my-header/>
@@ -34,6 +34,7 @@ import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyTest from '@/components/MyTest.vue';
 import MyAskGuests from '@/components/MyAskGuests.vue';
+import MySwiper from './components/MySwiper.vue';
 
 
 
@@ -55,11 +56,7 @@ import MyAskGuests from '@/components/MyAskGuests.vue';
     MyParents,
     MyTest,
     MyAskGuests,
-    
-    
-    
-    
-    
+    MySwiper,
 },
     data() {
         return {

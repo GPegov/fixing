@@ -1,12 +1,9 @@
 <template>
-    <Swiper
+    <swiper
       :slides-per-view="1"
       :space-between="50"
       :modules="modules"
       
-      
-      
-    
       navigation
       :pagination="{ clickable: true }"
       :scrollbar="{ draggable: true }"
@@ -16,11 +13,11 @@
       @slideChange="onSlideChange"
       
     >
-    <SwiperSlide v-for="n in 10" :key="n">
-      <img :src="`https://placehold.co/800x400`">
-    </SwiperSlide>;
+    <swiper-slide v-for="photo in photos">
+      <img :src="`/src/components/img/photoBook/${photo}`">
+    </swiper-slide>;
     
-    </Swiper>
+    </swiper>
   </template>
   <script>
     
@@ -54,11 +51,22 @@
         };
       },
     };
-
+  const photos = [
+    "pb1.jpg",
+    "pb2.jpg",
+    "pb3.jpg",
+    "pb4.jpg",
+    "pb5.jpg",
+    "pb6.jpg",
+    "pb7.jpg",
+    "pb8.jpg",
+    
+  ];
   </script>
   <style scoped>
   img {
     max-width: 100%;
+    
   }
  
 
