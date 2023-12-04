@@ -2,14 +2,14 @@
         
     
     <div class="app">
-
+        <my-guests-d-b/>
         
         <my-swiper/>
         <my-test/>
  
         <my-header/>
        
-        <my-ask-guests/>
+        <my-ask-guests1/>
 
         <my-parents/>
         
@@ -33,8 +33,9 @@ import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyTest from '@/components/MyTest.vue';
-import MyAskGuests from '@/components/MyAskGuests.vue';
+import MyAskGuests1 from '@/components/MyAskGuests1.vue';
 import MySwiper from './components/MySwiper.vue';
+import MyGuestsDB from './components/MyGuestsDB.vue';
 
 
 
@@ -55,8 +56,9 @@ import MySwiper from './components/MySwiper.vue';
     MyPlace,
     MyParents,
     MyTest,
-    MyAskGuests,
+    MyAskGuests1,
     MySwiper,
+    MyGuestsDB,
 },
     data() {
         return {

@@ -1,17 +1,16 @@
 <template>
-        <div class="post">
-            <div>
-                <div>Имя: {{ post.title }}</div>
-                <div>Фамилия: {{ post.body }}</div>
-            </div>
-            <div class="post__btns">    
-                <my-button
-                @click="($emit('remove', post)), counter = 1"
-                >
-                    Удалить
-                </my-button>
-            </div>
-            
+    <div class="guest">
+        <div>
+            <div>Имя: {{ guest.name }}</div>
+            <div>Фамилия: {{ guest.surname }}</div>
+        </div>
+        <div class="post__btns">    
+            <my-button
+            @click="($emit('remove', guest))"
+            >
+                Удалить
+            </my-button>
+        </div>
     </div>
 </template>
 
@@ -19,12 +18,8 @@
 <script>
 export default {
     props: {
-        post: {
+        guest: {
             type: Object,
-            required: true,
-        },
-        counter: {
-            type: Number, 
             required: true,
         },
     }
@@ -33,7 +28,7 @@ export default {
 
 
 <style scoped>
-.post {
+.guest {
     
     padding: 20px;
     border: 1px solid rgb(33, 109, 153);

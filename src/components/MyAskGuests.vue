@@ -26,7 +26,7 @@
                 />
                 </my-dialog>
                 <post-list
-                    :posts="posts"
+                    :guests="guests"
                     @remove="removePost"
                 />  
         </div>  
@@ -159,6 +159,7 @@
 
 <script>
 
+    import { ref } from 'vue'
     import MyDialog from '@/components/UI/MyDialog.vue';
     import MyInput from '@/components/UI/MyInput.vue';
     import MyButton from '@/components/UI/MyButton.vue'
@@ -177,9 +178,7 @@
         },
         data() {
         return {
-            posts: [
-                
-            ],
+            posts: [],
             dialogVisible: false,
             selected:'Select',
 
@@ -199,7 +198,7 @@
 
             
         }; 
-    },
+        },
     methods: {
         createPost(post) {
             this.posts.push(post);
@@ -225,7 +224,11 @@
         }
         
     }
-    
+    const guestForm = ref([
+    {name:''},
+    {surname:''},
+    {alone:''},
+])
     
    
     
@@ -233,10 +236,6 @@
 </script>
 
 <style scoped>
-.pressedButt {
-    background:#a676e6;
-    color: white;
-}
 
 .askWillGuestsCome {
     display: flex;
@@ -285,7 +284,6 @@
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 30px;
-   
 
 }
 

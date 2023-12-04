@@ -2,18 +2,18 @@
     <form @submit.prevent>
         <h4 class="formInput">Укажите гостей</h4>
         <my-input 
-            v-model="post.title"
+            v-model="guest.name"
             type="text" 
             placeholder="Имя гостя"
         />
         <my-input 
-            v-model="post.body"
+            v-model="guest.surname"
             type="text" 
             placeholder="Фамилия гостя"
         />
         <my-button 
             style="margin-top: 15px; align-self: flex-end;"
-            @click="createPost"
+            @click="createGuest"
         >
             Добавить гостя
         </my-button>
@@ -22,25 +22,33 @@
 
 
 <script>
+import MyAskGuests1 from './MyAskGuests1.vue';
+
 export default {
+    components: {
+        MyAskGuests1
+
+    },
     data() {
         return {
-            post: {
-                title: '',
-                body: '',
+            guest: {
+                name: '',
+                surname: '',
             }
         };
     },
     methods: {
-        createPost() {
-            this.post.id = Date.now();
-            this.$emit('create', this.post);
-            this.post = {
-                title: '',
-                body: '',
-            };
+        createGuest() {
+            guests.value.push({id:guests.value.length +1, 
+            name: guest.name,
+            surname: guest.surname
+            })
+            guest.name = ''
+            guest.surname = ''
         }
     }
+    
+
 }
 </script>
 
