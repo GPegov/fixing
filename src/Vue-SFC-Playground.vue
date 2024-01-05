@@ -4,7 +4,7 @@ import { ref } from 'vue'
 let guests = ref([])
 const guest = {name: '', surname: ''}
 const saveGuest = ()=>{
-    guests.value.push({id:guests.value.length +1, 
+    guests.value.push({id:Date.now(), 
     name: guest.name,
     surname: guest.surname
     })
@@ -14,7 +14,7 @@ const saveGuest = ()=>{
 }
 const askGuestsResult = ()=>{
     guests.value.push({
-    id:guests.value.length +1,
+    id:Date.now(),
     properties: familyProperties.value})
 }
 
@@ -28,13 +28,10 @@ const familyProperties = ref({
   foodMeat: false,
   foodFish: false,
   })
-const formResults = ref([])
-const removeGuest = (guest) => {
-    guests.value = guests.value.filter(p => p.id !== guest.id)
-        
-}
-let deleteGuest = function(guest) {
-  this.guests.splice(this.guest.indexOf(guest), 1);
+const formResults = ref([])  
+
+let deleteGuest = () => {
+  guests.value = guests.value.filter(guest => guest.id !== guest.id)
 }
 
 
@@ -80,13 +77,12 @@ let deleteGuest = function(guest) {
                 <div 
                     class="guestItem" 
                     v-for = 'guest in guests'
-                    :guest="guest"
                     :key="guest.id"
-                    @remove="$emit('remove', guest)"
-                    
                     >
                         <div class="guestName">
-                            {{ guest }}
+                            Имя гостя: {{ guest.name }}
+                            <br>
+                            Фамилия гостя: {{ guest.surname }}
                         </div>
                         <div class="removeGuestDiv">
                             <button 
@@ -364,5 +360,3 @@ let deleteGuest = function(guest) {
 
 
 </style>
-
-

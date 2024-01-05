@@ -1,69 +1,21 @@
 <template>
     <div class="app">
-        <my-swiper/>
-        <my-header/>
-        <MyAskGuests/>
-        <my-parents/>
-        <my-place/>
+        <my-swiper />
+        <my-header />
+        <MyAskGuests />
+        <my-parents />
+        <my-place />
     </div>
 </template>
 
-<script>
-import MyDialog from '@/components/UI/MyDialog.vue';
-import MyInput from '@/components/UI/MyInput.vue';
-import MyButton from '@/components/UI/MyButton.vue'
-import PostForm from '@/components/PostForm.vue'
-import PostList from '@/components/PostList.vue'
+<script setup>
+
 import MyHeader from '@/components/MyHeader.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyAskGuests from '@/components/MyAskGuests.vue';
-import MySwiper from './components/MySwiper.vue';
-import MyGuestsDB from './components/MyGuestsDB.vue';
-
-    export default {
-        components: {
-    MyDialog,
-    MyInput,
-    MyButton,
-    PostList,
-    PostForm,
-    MyHeader,
-    
-    MyPlace,
-    MyParents,
-    MyAskGuests,
-    MySwiper,
-    MyGuestsDB,
-},
-    data() {
-        return {
-            posts: [
-                
-            ],
-            dialogVisible: false,
-            selected:'Select',
+import MySwiper from './components/MySwiper.vue';     
             
-            
-        }; 
-    },
-    methods: {
-        createPost(post) {
-            this.posts.push(post);
-            this.dialogVisible = false;
-        },
-        removePost(post) {
-            this.posts = this.posts.filter(p => p.id !== post.id)
-        },
-        showDialog () {
-            this.dialogVisible = true;
-        },
-        optionSelect(option) {
-            this.selected = option.name
-        },
-    }
-    
-}
 </script>
 
 

@@ -31,10 +31,8 @@
 </template>
 
 
-<script>
-export default {
-    name: 'my-parents'
-}
+<script setup>
+
 </script>
 
 
