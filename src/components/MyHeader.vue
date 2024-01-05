@@ -5,7 +5,7 @@
         <h2 class="theDate">Торжество состоится 30 февраля 2024г. в 15.00</h2>
         
         <p class="invitationText">Все вы знаете их как любимых родственников, верных друзей и надёжных коллег но наступит день, и мы больше не сможем воспринимать их отдельно друг от друга!</p>
-        <p class="invitationText">В этот день два любящих сердца соединятся воедино, и появится новая, счастливая семья Огурцовых! И этот день - 30 февраля 2024 года!</p>
+        <p class="invitationText">В этот день два любящих сердца соединятся воедино, и появится новая, счастливая семья!</p>
         <p class="invitationText">Они будут рады видеть Вас и Ваших спутников на своём свадебном торжестве!</p>
         
 
@@ -23,25 +23,9 @@ export default {
 
 
 <style scoped>
-.header {
-    padding-right: 0px;
-    padding-left: 0px;
-    min-width: 395px;
-    min-height: 389px;
-    
-}
-.headerPhoto {
-    width: 100%;
-    height: 100%;
-}
 .invitation {
-
 color: rgb(68, 68, 68);
-
 display: flex;
-
-
-
 flex-direction: column;
 
 }
@@ -66,9 +50,5 @@ flex-direction: column;
 .invitHeader {
     padding-top: 50px;
     padding-bottom: 50px;
-}
-.invitWedding {
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
 </style>

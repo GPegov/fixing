@@ -25,6 +25,8 @@
 import MyAskGuests1 from './MyAskGuests1.vue';
 
 export default {
+    name: 'post-form',
+    
     components: {
         MyAskGuests1
 
@@ -34,15 +36,15 @@ export default {
             guest: {
                 name: '',
                 surname: '',
-            }
+            },
+            
         };
     },
     methods: {
-        createGuest() {
-            guests.value.push({id:guests.value.length +1, 
+        createGuest(guest) {
+            guests.value.push({id:guests.length +1, 
             name: guest.name,
-            surname: guest.surname
-            })
+            surname: guest.surname})
             guest.name = ''
             guest.surname = ''
         }

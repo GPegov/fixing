@@ -1,47 +1,25 @@
 <template>
-        
-    
     <div class="app">
-        <my-guests-d-b/>
-        
         <my-swiper/>
-        <my-test/>
- 
         <my-header/>
-       
-        <my-ask-guests1/>
-
+        <MyAskGuests/>
         <my-parents/>
-        
         <my-place/>
-        
     </div>
-    
 </template>
 
-
 <script>
-
 import MyDialog from '@/components/UI/MyDialog.vue';
 import MyInput from '@/components/UI/MyInput.vue';
 import MyButton from '@/components/UI/MyButton.vue'
 import PostForm from '@/components/PostForm.vue'
 import PostList from '@/components/PostList.vue'
-import MyPhotoBook from '@/components/MyPhotoBook.vue';
 import MyHeader from '@/components/MyHeader.vue';
-import MyMap from '@/components/MyMap.vue';
 import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
-import MyTest from '@/components/MyTest.vue';
-import MyAskGuests1 from '@/components/MyAskGuests1.vue';
+import MyAskGuests from '@/components/MyAskGuests.vue';
 import MySwiper from './components/MySwiper.vue';
 import MyGuestsDB from './components/MyGuestsDB.vue';
-
-
-
-
-
-
 
     export default {
         components: {
@@ -50,13 +28,11 @@ import MyGuestsDB from './components/MyGuestsDB.vue';
     MyButton,
     PostList,
     PostForm,
-    MyPhotoBook,
     MyHeader,
-    MyMap,
+    
     MyPlace,
     MyParents,
-    MyTest,
-    MyAskGuests1,
+    MyAskGuests,
     MySwiper,
     MyGuestsDB,
 },

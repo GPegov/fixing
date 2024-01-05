@@ -1,290 +1,287 @@
-<template>
-    <div class="askGuests">
-        <div class="askWillGuestsCome">
-            <div class="willBe">
-                <div class="app__btns">
-                <my-button class="addGuest"
-                    @click="showDialog"
-                >
-                    Подтвердите присутствие
-                </my-button>
-                </div>
-                <div class="willNotBe">
-                <my-button 
-                    v-if="posts.length === 0"
-                    v-on:click="say('Нам очень жаль, что Вы не сможете принять участие в нашем торжестве')"
-                >
-                    К сожалению, присутствовать не смогу
-                </my-button>            
-                </div>
-            </div>
-            
-                <my-dialog 
-                    v-model:show="dialogVisible">
-                <post-form
-                    @create = 'createPost'
-                />
-                </my-dialog>
-                <post-list
-                    :guests="guests"
-                    @remove="removePost"
-                />  
-        </div>  
-    
+<script setup>
+import { ref } from 'vue'
 
-        <div 
-            class="askGuestsMore"
-            v-if="(posts.length > 0)">
+const guests = ref([])
+const guest = {name: '', surname: ''}
+
+const saveGuest = ()=>{
+    guests.value.push({id:guests.value.length +1, 
+    name: guest.name,
+    surname: guest.surname
+    })
+    guest.name = ''
+    guest.surname = ''
+    
+}
+const askGuestsResult = ()=>{
+    guests.value.push({
+    id:guests.value.length +1,
+    properties: familyProperties.value})
+}
+
+const familyProperties = ref({
+  alone: false,
+  couple: false,
+  withChildren: false,
+  withoutChildren: false,
+  onCar: false,
+  foodDoesntMatter: false,
+  foodMeat: false,
+  foodFish: false,
+  })
+const formResults = ref([])
+
+</script>
+
+<template>
+    
+    <div class="addGuestsForm">
+        <div class="inputField">
+        <input 
+            class="inputs"
+            v-model="guest.name" 
+            type="text" 
+            placeholder="Имя Гостя"
+        >
+        <input 
+            class="inputs"
+            v-model="guest.surname" 
+            type="text" 
+            placeholder="Фамилия Гостя"
+        >
+        </div>
+        
+        <button
+            class="btn addGuestbtn"
+            @click="saveGuest"
+        >
+        Добавить гостя
+        </button>
+
+    </div>
+
+
+    <div class="askGuests">
+        <div class="askGuestsMore"
+            v-if="(guests.length > 0)"
+            >
             <div>
-                <my-button
+                <button
+                
                 class="askGuestsMoreButton"
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
-                @click="counter = 1,
-                alone = 1
-                ">
+                :class="{pressed: familyProperties.alone}"
+                @click="familyProperties.couple = false,
+                        familyProperties.alone = !familyProperties.alone"
+                >
                     Буду один / одна
-                </my-button>
+                </button>
             </div>
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
+                
                 class="askGuestsMoreButton"
-                @click="counter = 1,
-                couple = 1"
+                :class="{pressed: familyProperties.couple}"
+                @click="familyProperties.couple = !familyProperties.couple,
+                familyProperties.alone = false"
                 >
                     Буду с парой
-                </my-button>
+                </button>
             </div>
         </div>
         
-        
-        
-        
-        <div 
-            class="askGuestsMore"
-            v-if="((posts.length > 0) && (counter >= 1))"
+        <div class="askGuestsMore"
+            v-if="((guests.length > 0) && (familyProperties.alone || familyProperties.couple))"
             >
 
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
-                class="askGuestsMoreButton" 
-                @click="counter = 2,
-                        withChildren = 1"
+                <button
+                class="askGuestsMoreButton"
+                :class="{pressed: familyProperties.withChildren}" 
+                @click="familyProperties.withChildren = !familyProperties.withChildren,
+                        familyProperties.withoutChildren = false"
 
                 >
                     С детьми
-                </my-button>
+                </button>
             </div>
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
                 class="askGuestsMoreButton"
-                @click="counter = 2, 
-                        withoutChildren = 1"
-
+                :class="{pressed: familyProperties.withoutChildren}"
+                @click="familyProperties.withChildren = false,
+                        familyProperties.withoutChildren = !familyProperties.withoutChildren"
                 >
                     Без детей
-                </my-button>
+                </button>
             </div>
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
                 class="askGuestsMoreButton"
-                @click="onCar = 1">
+                :class="{pressed: familyProperties.onCar}"
+                @click="familyProperties.onCar = !familyProperties.onCar">
                     На машине
-                </my-button>
+                </button>
             </div> 
         </div>
-        
-        
-        
-        
         <div 
-            v-if="((posts.length > 0) && (counter >= 2))" 
+            v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))" 
             class="askGuestsMore" 
             name="Food">
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
                 class="askGuestsMoreButton"
-                @click="counter = 3,
-                        foodDoesntMatter = 1"
+                :class="{pressed: familyProperties.foodDoesntMatter}"
+                @click="familyProperties.foodDoesntMatter = !familyProperties.foodDoesntMatter,
+                        familyProperties.foodMeat = false,
+                        familyProperties.foodFish = false
+                        "
                 >
                     Не важно
-                </my-button>
+                </button>
             </div>
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
                 class="askGuestsMoreButton"
-                @click="counter = 3,
-                        foodMeat = 1"
+                :class="{pressed: familyProperties.foodMeat}"
+                @click="familyProperties.foodDoesntMatter = false,
+                        familyProperties.foodMeat = !familyProperties.foodMeat,
+                        familyProperties.foodFish = false
+                        "
                 >
                     Мясо
-                </my-button>
+                </button>
             </div>
             <div>
-                <my-button
-                onclick="this.style.background='#a676e6',
-                         this.style.color='white'"
+                <button
                 class="askGuestsMoreButton"
-                @click="counter = 3,
-                        foodFish = 1"
+                :class="{pressed: familyProperties.foodFish}"
+                @click="familyProperties.foodDoesntMatter = false,
+                        familyProperties.foodMeat = false,
+                        familyProperties.foodFish = !familyProperties.foodFish
+                        "
                 >
                     Рыба
-                </my-button>
+                </button>
             </div> 
         </div>
-    </div>
-    <div>
+
         <button 
-            onclick="this.style.background='#a676e6',
-                     this.style.color='white'"
-            v-if="((posts.length > 0) && (counter >= 3))" 
-            class="sendResults" 
-            type="submit" >
+        v-if="(familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish)"
+        class="btn send"
+        @click="askGuestsResult,
+        formResults.push(guests, familyProperties),
+        guests = [],
+        familyProperties = {
+            alone: false,
+            couple: false,
+            withChildren: false,
+            withoutChildren: false,
+            onCar: false,
+            foodDoesntMatter: false,
+            foodMeat: false,
+            foodFish: false,
+        }
+        "
+        >
             Отправить
         </button>
     </div>
     
+    
+
+
+
+      <ul>
+        <li v-for="{id, name, surname } in guests" :key="id">
+            {{ name }} {{ surname }}
+
+        </li>
+    </ul>
+    <div
+    class="stats"
+    >
+    Statistics:
+    <br/>
+    {{ guests }}
+    <br/>
+    
+    <br/>
+    Form Results: {{ formResults }}
+    </div>
+    
 </template>
 
-<script>
-
-    import { ref } from 'vue'
-    import MyDialog from '@/components/UI/MyDialog.vue';
-    import MyInput from '@/components/UI/MyInput.vue';
-    import MyButton from '@/components/UI/MyButton.vue'
-    import PostForm from '@/components/PostForm.vue'
-    import PostList from '@/components/PostList.vue'
-    export default {
-        name: 'my-ask-guests',
-        components: {
-            MyDialog,
-            MyInput,
-            MyButton,
-            PostForm,
-            PostList,
-            
-            
-        },
-        data() {
-        return {
-            posts: [],
-            dialogVisible: false,
-            selected:'Select',
-
-            alone: 0,
-            couple :0,
-
-            withChildren: 0,
-            withoutChildren: 0,
-            
-
-            foodDoesntMatter: 0,
-            foodMeat: 0,
-            foodFish: 0,
-
-            counter: 0,
-
-
-            
-        }; 
-        },
-    methods: {
-        createPost(post) {
-            this.posts.push(post);
-            this.dialogVisible = false;
-        },
-        removePost(post) {
-            this.posts = this.posts.filter(p => p.id !== post.id)
-        },
-        showDialog () {
-            this.dialogVisible = true;
-        },
-        optionSelect(option) {
-            this.selected = option.name
-        },
-        say: function (message) {
-        alert(message)
-        },
-       
-        
-            
-        
-            
-        }
-        
-    }
-    const guestForm = ref([
-    {name:''},
-    {surname:''},
-    {alone:''},
-])
-    
-   
-    
-    
-</script>
-
-<style scoped>
-
-.askWillGuestsCome {
+<style>
+* {
+    margin-left: 20px;
+}
+.inputField {
     display: flex;
     flex-direction: column;
-    
-    
+    max-width: 300px;
 }
-.willNotBe {
+.stats {
+    padding: 10px 15px;
+    background: white;
+    color: rgb(33, 109, 153);
+    border: 2px solid rgb(33, 109, 153);
+    border-radius: 10px;
+    cursor:pointer;
+}
+.inputs {
+    width: 100%;
+    border: 1px solid rgb(33, 109, 153); 
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: #a2fdd7;
+    color: rgb(168, 110, 245);
+    color: rgb(255, 255, 255);
+}
+
+.btn {
+    margin-left: 20px;
+    padding: 10px 15px;
+    background: white;
+    color: rgb(33, 109, 153);
+    border: 2px solid rgb(33, 109, 153);
+    border-radius: 10px;
+    cursor:pointer;
+}
+.addGuestbtn {
+margin-top: 30px;
+
+}
+.askGuests {
     display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    flex-direction: column;
 }
 .askGuestsMore {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
 }
 
-.sendResults {
-    padding: 15px 20px;
-    font-size: 16pt;
-    background: none;
-    color: rgb(33, 109, 153);
-    border: 2px solid rgb(33, 109, 153);
-    border-radius: 10px;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 45px;
-    cursor:pointer;
-    transition: 0.4s;
-}
-.sendResults:hover{
-    background-color: #cae0e6;
-    
-}
-.sendResults:active {
-    background-color: #6d797c;
-
-}
 .askGuestsMoreButton {
     box-shadow: 0 0 20px #9e68e6;
     padding: 15px 20px 15px 20px;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 30px;
+    cursor: pointer;
 
+
+}
+.send {
+    margin-top: 30px;
+}
+.pressed {
+    background:#a676e6;
+    color: white;
+}
+.pressed1 {
+    background-color:'#a676e6';
+    color:'white'
 }
 
 </style>
