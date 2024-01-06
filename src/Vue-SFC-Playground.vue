@@ -199,7 +199,7 @@ let deleteGuest = () => {
             </div>
 
             <button 
-            v-if="(familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish)"
+            v-if="((familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish) && guests.length > 0)"
             class="btn send"
             @click="askGuestsResult,
             formResults.push(guests, familyProperties),

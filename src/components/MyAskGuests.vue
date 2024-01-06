@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 
-const guests = ref([])
+let guests = ref([])
 const guest = {name: '', surname: ''}
-
 const saveGuest = ()=>{
-    guests.value.push({id:guests.value.length +1, 
+    guests.value.push({id:Date.now(), 
     name: guest.name,
     surname: guest.surname
     })
@@ -15,7 +14,7 @@ const saveGuest = ()=>{
 }
 const askGuestsResult = ()=>{
     guests.value.push({
-    id:guests.value.length +1,
+    id:Date.now(),
     properties: familyProperties.value})
 }
 
@@ -29,259 +28,383 @@ const familyProperties = ref({
   foodMeat: false,
   foodFish: false,
   })
-const formResults = ref([])
+const formResults = ref([])  
+
+let deleteGuest = () => {
+  guests.value = guests.value.filter(guest => guest.id !== guest.id)
+}
+
+
 
 </script>
+ 
+
 
 <template>
-    
-    <div class="addGuestsForm">
-        <div class="inputField">
-        <input 
-            class="inputs"
-            v-model="guest.name" 
-            type="text" 
-            placeholder="Имя Гостя"
-        >
-        <input 
-            class="inputs"
-            v-model="guest.surname" 
-            type="text" 
-            placeholder="Фамилия Гостя"
-        >
-        </div>
+    <div
+    class="guestForm"
+    >
+        <div class="addGuestsForm">
+            <div class="inputField">
+                <input 
+                    class="inputs"
+                    v-model="guest.name" 
+                    type="text" 
+                    placeholder="Имя Гостя"
+                >
+                <input 
+                    class="inputs"
+                    v-model="guest.surname" 
+                    type="text" 
+                    placeholder="Фамилия Гостя"
+                >
+            </div>
         
-        <button
-            class="btn addGuestbtn"
-            @click="saveGuest"
-        >
-        Добавить гостя
-        </button>
-
-    </div>
-
-
-    <div class="askGuests">
-        <div class="askGuestsMore"
-            v-if="(guests.length > 0)"
+            <button
+               class="btn addGuestbtn"
+               @click="saveGuest"
             >
-            <div>
-                <button
-                
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.alone}"
-                @click="familyProperties.couple = false,
-                        familyProperties.alone = !familyProperties.alone"
-                >
-                    Буду один / одна
-                </button>
-            </div>
-            <div>
-                <button
-                
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.couple}"
-                @click="familyProperties.couple = !familyProperties.couple,
-                familyProperties.alone = false"
-                >
-                    Буду с парой
-                </button>
-            </div>
+                Добавить гостя
+            </button>
+
         </div>
+
+
+
+        <div class="askGuests">
+            
+            <div class="guestsList">
+                <div 
+                    class="guestItem" 
+                    v-for = 'guest in guests'
+                    :key="guest.id"
+                    >
+                        <div class="guestName">
+                            Имя: {{ guest.name }}
+                            <br>
+                            Фамилия: {{ guest.surname }}
+                        </div>
+                        <div class="removeGuestDiv">
+                            <button 
+                            class="removeGuestBtn" 
+                            @click="deleteGuest"
+                            >
+                            Удалить
+                            </button>
+                        </div>
+                </div>
+            </div>
+
+            <div class="askGuestsMore"
+                v-if="(guests.length > 0)"
+                >
+                <div>
+                    <button
+
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.alone}"
+                    @click="familyProperties.couple = false,
+                            familyProperties.alone = !familyProperties.alone"
+                    >
+                        Буду один / одна
+                    </button>
+                </div>
+                <div>
+                    <button
+
+                class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.couple}"
+                    @click="familyProperties.couple = !familyProperties.couple,
+                    familyProperties.alone = false"
+                    >
+                        Буду с парой
+                    </button>
+                </div>
+            </div>
+
+            <div class="askGuestsMore"
+                v-if="((guests.length > 0) && (familyProperties.alone || familyProperties.couple))"
+                >
+
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.withChildren}" 
+                    @click="familyProperties.withChildren = !familyProperties.withChildren,
+                            familyProperties.withoutChildren = false"
+
+                    >
+                        С детьми
+                    </button>
+                </div>
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.withoutChildren}"
+                    @click="familyProperties.withChildren = false,
+                            familyProperties.withoutChildren = !familyProperties.withoutChildren"
+                    >
+                        Без детей
+                    </button>
+                </div>
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.onCar}"
+                    @click="familyProperties.onCar = !familyProperties.onCar">
+                        На машине
+                    </button>
+                </div> 
+            </div>
+            <div 
+                v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))" 
+                class="askGuestsMore" 
+                name="Food">
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.foodDoesntMatter}"
+                    @click="familyProperties.foodDoesntMatter = !familyProperties.foodDoesntMatter,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
+                    >
+                        Не важно
+                    </button>
+                </div>
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.foodMeat}"
+                    @click="familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = !familyProperties.foodMeat,
+                            familyProperties.foodFish = false
+                            "
+                    >
+                        Мясо
+                    </button>
+                </div>
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.foodFish}"
+                    @click="familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = !familyProperties.foodFish
+                            "
+                    >
+                        Рыба
+                    </button>
+                </div> 
+            </div>
+
+            <button 
+            v-if="((familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish) && guests.length > 0)"
+            class="btn send"
+            @click="askGuestsResult,
+            formResults.push(guests, familyProperties),
+            guests = [],
+            familyProperties = {
+                alone: false,
+                couple: false,
+                withChildren: false,
+                withoutChildren: false,
+                onCar: false,
+                foodDoesntMatter: false,
+                foodMeat: false,
+                foodFish: false,
+            }
+            "
+            >
+                Отправить
+            </button>
+        </div>
+
         
-        <div class="askGuestsMore"
-            v-if="((guests.length > 0) && (familyProperties.alone || familyProperties.couple))"
-            >
-
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.withChildren}" 
-                @click="familyProperties.withChildren = !familyProperties.withChildren,
-                        familyProperties.withoutChildren = false"
-
-                >
-                    С детьми
-                </button>
-            </div>
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.withoutChildren}"
-                @click="familyProperties.withChildren = false,
-                        familyProperties.withoutChildren = !familyProperties.withoutChildren"
-                >
-                    Без детей
-                </button>
-            </div>
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.onCar}"
-                @click="familyProperties.onCar = !familyProperties.onCar">
-                    На машине
-                </button>
-            </div> 
-        </div>
-        <div 
-            v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))" 
-            class="askGuestsMore" 
-            name="Food">
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.foodDoesntMatter}"
-                @click="familyProperties.foodDoesntMatter = !familyProperties.foodDoesntMatter,
-                        familyProperties.foodMeat = false,
-                        familyProperties.foodFish = false
-                        "
-                >
-                    Не важно
-                </button>
-            </div>
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.foodMeat}"
-                @click="familyProperties.foodDoesntMatter = false,
-                        familyProperties.foodMeat = !familyProperties.foodMeat,
-                        familyProperties.foodFish = false
-                        "
-                >
-                    Мясо
-                </button>
-            </div>
-            <div>
-                <button
-                class="askGuestsMoreButton"
-                :class="{pressed: familyProperties.foodFish}"
-                @click="familyProperties.foodDoesntMatter = false,
-                        familyProperties.foodMeat = false,
-                        familyProperties.foodFish = !familyProperties.foodFish
-                        "
-                >
-                    Рыба
-                </button>
-            </div> 
-        </div>
-
-        <button 
-        v-if="(familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish)"
-        class="btn send"
-        @click="askGuestsResult,
-        formResults.push(guests, familyProperties),
-        guests = [],
-        familyProperties = {
-            alone: false,
-            couple: false,
-            withChildren: false,
-            withoutChildren: false,
-            onCar: false,
-            foodDoesntMatter: false,
-            foodMeat: false,
-            foodFish: false,
-        }
-        "
-        >
-            Отправить
-        </button>
     </div>
     
+          
+
     
 
 
-
-      <ul>
-        <li v-for="{id, name, surname } in guests" :key="id">
-            {{ name }} {{ surname }}
-
-        </li>
-    </ul>
     <div
     class="stats"
     >
-    Statistics:
-    <br/>
-    {{ guests }}
-    <br/>
-    
-    <br/>
-    Form Results: {{ formResults }}
+        Statistics:
+        <br/>
+        {{ guests }}
+        <br/>
+        <br/>
+        Form Results: {{ formResults }}
     </div>
     
+
 </template>
 
-<style>
-* {
-    margin-left: 20px;
+<style scoped>
+
+.guestForm {
+
+    border: 1px solid rgb(24, 93, 133);
+    max-width: 800px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    
+}
+.addGuestsForm {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 290px;
+}
+.guestsList{
+    width: 100%;
+
+    
+}
+.guestItem {
+    border-radius: 5px;
+    text-align: center;
+    background: #c9ffe8;
+    color: rgb(24, 93, 133);
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    
+}
+.guestName {
+    width: 80%;
+    max-width: 510px;
+    
+}
+.removeGuestDiv {
+    padding-left: 20px;
+}
+.removeGuestBtn {
+    padding: 5px 10px 5px 10px;
+    border: 1px solid rgb(24, 93, 133);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(24, 93, 133);
+    box-shadow: 0 0 5px #000000;
+    cursor:pointer;
+    
+    
 }
 .inputField {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    
 }
 .stats {
     padding: 10px 15px;
     background: white;
-    color: rgb(33, 109, 153);
-    border: 2px solid rgb(33, 109, 153);
+    color: rgb(24, 93, 133);
+    border: 1px solid rgb(24, 93, 133);
     border-radius: 10px;
     cursor:pointer;
 }
 .inputs {
     width: 100%;
-    border: 1px solid rgb(33, 109, 153); 
+    border: 1px solid rgb(24, 93, 133);
     padding: 10px 15px;
     margin-top: 15px;
     border-radius: 10px;
-    background: #a2fdd7;
-    color: rgb(168, 110, 245);
-    color: rgb(255, 255, 255);
 }
 
 .btn {
-    margin-left: 20px;
+    background-color: #fff;
     padding: 10px 15px;
-    background: white;
-    color: rgb(33, 109, 153);
-    border: 2px solid rgb(33, 109, 153);
-    border-radius: 10px;
+    color: rgb(24, 93, 133);
+    border: 1px solid rgb(24, 93, 133);
+    border-radius: 5px;
     cursor:pointer;
 }
 .addGuestbtn {
-margin-top: 30px;
+    margin-top: 30px;
+    
+    margin-bottom: 30px;
+    background: #c9ffe8;
+    color: rgb(24, 93, 133);
 
 }
 .askGuests {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-width: 495.8px;
+    justify-content: flex-start;
+    
+    
+    
 }
 .askGuestsMore {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    min-width: 100%;
 }
 
 .askGuestsMoreButton {
-    box-shadow: 0 0 20px #9e68e6;
+    border: 1px solid teal;
+    
     padding: 15px 20px 15px 20px;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 30px;
+    border-radius: 5px;
+    background-color: #f9d8ff;
     cursor: pointer;
 
-
+    
 }
 .send {
     margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 14pt;
 }
 .pressed {
-    background:#a676e6;
-    color: white;
+    background:#a2fdd7;
+    box-shadow: 0 0 40px #9effd7;
+    color: black;
 }
-.pressed1 {
-    background-color:'#a676e6';
-    color:'white'
+
+
+@media screen and (max-width: 800px) {
+    .guestForm {
+    flex-direction: column;
+    
 }
+.inputField {
+    
+    justify-content: center;
+}
+.guestsList{
+    min-width: 345px;
+    max-width: 80%;
+    padding-bottom: 30px;
+    
+}
+.askGuests {
+    min-width: 290px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.askGuestsMoreButton {
+    margin: 5px;
+}
+
+}
+
+
+
+
+
+
 
 </style>
