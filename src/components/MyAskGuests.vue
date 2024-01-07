@@ -65,13 +65,13 @@ let deleteGuest = () => {
             <div class="inputField">
                 <input 
                     class="inputs"
-                    v-model="guest.name" 
+                    v-model="storeVariables.guest.name" 
                     type="text" 
                     placeholder="Имя Гостя"
                 >
                 <input 
                     class="inputs"
-                    v-model="guest.surname" 
+                    v-model="storeVariables.guest.surname" 
                     type="text" 
                     placeholder="Фамилия Гостя"
                 >
@@ -79,7 +79,7 @@ let deleteGuest = () => {
         
             <button
                class="btn addGuestbtn"
-               @click="saveGuest"
+               @click="storeVariables.saveGuest"
             >
                 Добавить гостя
             </button>
@@ -93,8 +93,8 @@ let deleteGuest = () => {
             <div class="guestsList">
                 <div 
                     class="guestItem" 
-                    v-for = 'guest in guests'
-                    :key="guest.id"
+                    v-for = 'guest in storeVariables.guests'
+                    :key="storeVariables.guest.id"
                     >
                         <div class="guestName">
                             <div class="name">Имя: {{ guest.name }}</div>     
@@ -296,6 +296,9 @@ let deleteGuest = () => {
     class="stats"
     >
         Statistics:
+        <br>
+        Store guest is: {{  storeVariables.guest }}
+        Store guests is:{{ storeVariables.guests }}
         <br/>
         {{ guests }}
         <br/>

@@ -3,18 +3,21 @@ import { defineStore } from 'pinia'
 export const useVariables = defineStore('variables', {
     state: () => ({
         guests: [],
-        
+        guest: {name: '', surname: ''}
     }),
     getters: {
-        guest: {id:Date.now(), name: '', surname: ''}
+        
     },
     actions: { 
-        saveGuest () {
+        saveGuest (state) {
             this.guests.push({
-            guest
-            })
-            this.guest.name = ''
-            this.guest.surname = ''
-    },
+                id: Date.now(),
+                name: this.guest.name,
+                surname: this.guest.surname
+            }),
+            this.guest.name = '',
+            this.guest.surname= ''
+            
+        }
 }
 })
