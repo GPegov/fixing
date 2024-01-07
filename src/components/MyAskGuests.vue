@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useVariables } from '@/stores/Variables.js'
+
+const storeVariables = useVariables()
 
 let guests = ref([])
 const guest = {name: '', surname: ''}
@@ -116,8 +119,16 @@ let deleteGuest = () => {
 
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.alone}"
-                    @click="familyProperties.couple = false,
-                            familyProperties.alone = !familyProperties.alone"
+                    @click="familyProperties.alone = !familyProperties.alone,
+                            familyProperties.couple = false,
+                            familyProperties.withChildren = false,
+                            familyProperties.withoutChildren = false,
+                            familyProperties.onCar = false,
+                            familyProperties.needTransfer = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
                     >
                         Буду один / одна
                     </button>
@@ -128,7 +139,15 @@ let deleteGuest = () => {
                 class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.couple}"
                     @click="familyProperties.couple = !familyProperties.couple,
-                    familyProperties.alone = false"
+                            familyProperties.alone = false,
+                            familyProperties.withChildren = false,
+                            familyProperties.withoutChildren = false,
+                            familyProperties.onCar = false,
+                            familyProperties.needTransfer = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
                     >
                         Буду с парой
                     </button>
@@ -144,7 +163,13 @@ let deleteGuest = () => {
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.withChildren}" 
                     @click="familyProperties.withChildren = !familyProperties.withChildren,
-                            familyProperties.withoutChildren = false"
+                            familyProperties.withoutChildren = false,
+                            familyProperties.onCar = false,
+                            familyProperties.needTransfer = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
 
                     >
                         С детьми
@@ -154,8 +179,14 @@ let deleteGuest = () => {
                     <button
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.withoutChildren}"
-                    @click="familyProperties.withChildren = false,
-                            familyProperties.withoutChildren = !familyProperties.withoutChildren"
+                    @click="familyProperties.withoutChildren = !familyProperties.withoutChildren,
+                            familyProperties.withChildren = false,
+                            familyProperties.onCar = false,
+                            familyProperties.needTransfer = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
                     >
                         Без детей
                     </button>
@@ -168,8 +199,12 @@ let deleteGuest = () => {
                     <button
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.onCar}"
-                    @click="familyProperties.needTransfer = false,
-                            familyProperties.onCar = !familyProperties.onCar">
+                    @click="familyProperties.onCar = !familyProperties.onCar,
+                            familyProperties.needTransfer = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            ">
                         На машине
                     </button>
                 </div> 
@@ -177,8 +212,13 @@ let deleteGuest = () => {
                     <button
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.needTransfer}"
-                    @click="familyProperties.onCar = false,
-                            familyProperties.needTransfer = !familyProperties.needTransfer">
+                    @click="familyProperties.needTransfer = !familyProperties.needTransfer,
+                            familyProperties.onCar = false,
+                            familyProperties.foodDoesntMatter = false,
+                            familyProperties.foodMeat = false,
+                            familyProperties.foodFish = false
+                            "
+                            >
                         Нужен трансфер
                     </button>
                 </div> 
@@ -227,7 +267,7 @@ let deleteGuest = () => {
             </div>
 
             <button 
-            v-if="((familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish) && guests.length > 0)"
+            v-if="((familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish) && (guests.length > 0))"
             class="btn send"
             @click="askGuestsResult,
             formResults.push(guests, familyProperties),
@@ -252,11 +292,6 @@ let deleteGuest = () => {
         
     </div>
     
-          
-
-    
-
-
     <div
     class="stats"
     >
