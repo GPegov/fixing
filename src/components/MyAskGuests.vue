@@ -24,6 +24,7 @@ const familyProperties = ref({
   withChildren: false,
   withoutChildren: false,
   onCar: false,
+  needTransfer: false,
   foodDoesntMatter: false,
   foodMeat: false,
   foodFish: false,
@@ -32,6 +33,19 @@ const formResults = ref([])
 
 let deleteGuest = () => {
   guests.value = guests.value.filter(guest => guest.id !== guest.id)
+  if (guests.value.length === 0) {
+        familyProperties.value = {
+            alone: false,
+            couple: false,
+            withChildren: false,
+            withoutChildren: false,
+            onCar: false,
+            needTransfer: false,
+            foodDoesntMatter: false,
+            foodMeat: false,
+            foodFish: false,
+        }
+  }
 }
 
 
@@ -80,9 +94,8 @@ let deleteGuest = () => {
                     :key="guest.id"
                     >
                         <div class="guestName">
-                            Имя: {{ guest.name }}
-                            <br>
-                            Фамилия: {{ guest.surname }}
+                            <div class="name">Имя: {{ guest.name }}</div>     
+                            <div class="surname">Фамилия: {{ guest.surname }}</div> 
                         </div>
                         <div class="removeGuestDiv">
                             <button 
@@ -147,17 +160,32 @@ let deleteGuest = () => {
                         Без детей
                     </button>
                 </div>
+            </div>
+            <div class="askGuestsMore"
+                v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))"
+            >
                 <div>
                     <button
                     class="askGuestsMoreButton"
                     :class="{pressed: familyProperties.onCar}"
-                    @click="familyProperties.onCar = !familyProperties.onCar">
+                    @click="familyProperties.needTransfer = false,
+                            familyProperties.onCar = !familyProperties.onCar">
                         На машине
                     </button>
                 </div> 
+                <div>
+                    <button
+                    class="askGuestsMoreButton"
+                    :class="{pressed: familyProperties.needTransfer}"
+                    @click="familyProperties.onCar = false,
+                            familyProperties.needTransfer = !familyProperties.needTransfer">
+                        Нужен трансфер
+                    </button>
+                </div> 
+            
             </div>
             <div 
-                v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))" 
+                v-if="((guests.length > 0) && (familyProperties.onCar || familyProperties.needTransfer))" 
                 class="askGuestsMore" 
                 name="Food">
                 <div>
@@ -210,6 +238,7 @@ let deleteGuest = () => {
                 withChildren: false,
                 withoutChildren: false,
                 onCar: false,
+                needTransfer: false,
                 foodDoesntMatter: false,
                 foodMeat: false,
                 foodFish: false,
@@ -260,8 +289,19 @@ let deleteGuest = () => {
     margin-right: auto;
     min-width: 290px;
 }
+.name {
+    text-align: left;
+    padding-left: 10px;
+}
+.surname {
+    text-align: left;
+    padding-left: 10px;
+}
 .guestsList{
     width: 100%;
+    padding-left: 7px;
+    padding-right: 7px;
+    
 
     
 }
@@ -275,10 +315,12 @@ let deleteGuest = () => {
     display: flex;
     flex-direction: row;
     
+    
 }
 .guestName {
     width: 80%;
     max-width: 510px;
+    
     
 }
 .removeGuestDiv {
@@ -301,6 +343,7 @@ let deleteGuest = () => {
     
 }
 .stats {
+    margin-top: 40px;
     padding: 10px 15px;
     background: white;
     color: rgb(24, 93, 133);
@@ -347,6 +390,7 @@ let deleteGuest = () => {
     flex-direction: row;
     justify-content: center;
     min-width: 100%;
+    padding-bottom: 20px;
 }
 
 .askGuestsMoreButton {
@@ -366,6 +410,8 @@ let deleteGuest = () => {
     margin-top: 30px;
     margin-bottom: 30px;
     font-size: 14pt;
+    box-shadow: 0 0 30px #9effd7;
+
 }
 .pressed {
     background:#a2fdd7;
