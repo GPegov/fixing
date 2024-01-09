@@ -5,8 +5,8 @@ import { useVariables } from '@/stores/Variables.js'
 const storeVariables = useVariables()
 
 let guests = ref([])
-const guest = {name: '', surname: ''}
-const saveGuest = ()=>{
+
+/*const saveGuest = ()=>{
     guests.value.push({id:Date.now(), 
     name: guest.name,
     surname: guest.surname
@@ -14,11 +14,11 @@ const saveGuest = ()=>{
     guest.name = ''
     guest.surname = ''
     
-}
+}*/
 const askGuestsResult = ()=>{
-    guests.value.push({
+    storeVariables.guests.push({
     id:Date.now(),
-    properties: familyProperties.value})
+    properties: storeVariables.familyProperties})
 }
 
 const familyProperties = ref({
@@ -34,10 +34,10 @@ const familyProperties = ref({
   })
 const formResults = ref([])  
 
-let deleteGuest = () => {
+/*let deleteGuest = () => {
   guests.value = guests.value.filter(guest => guest.id !== guest.id)
   if (guests.value.length === 0) {
-        familyProperties.value = {
+        storeVariables.familyProperties.value = {
             alone: false,
             couple: false,
             withChildren: false,
@@ -49,7 +49,7 @@ let deleteGuest = () => {
             foodFish: false,
         }
   }
-}
+}*/
 
 
 
@@ -93,17 +93,18 @@ let deleteGuest = () => {
             <div class="guestsList">
                 <div 
                     class="guestItem" 
-                    v-for = 'guest in storeVariables.guests'
-                    :key="storeVariables.guest.id"
+                    v-for = 'newGuest in storeVariables.guests'
+                    :key="newGuest.id"
                     >
                         <div class="guestName">
-                            <div class="name">Имя: {{ guest.name }}</div>     
-                            <div class="surname">Фамилия: {{ guest.surname }}</div> 
+                            <div>ID - {{ storeVariables.newGuest.id }}</div>
+                            <div class="name">Имя: {{ newGuest.name }}</div>     
+                            <div class="surname">Фамилия: {{ newGuest.surname }}</div> 
                         </div>
                         <div class="removeGuestDiv">
                             <button 
                             class="removeGuestBtn" 
-                            @click="deleteGuest"
+                            @click="storeVariables.deleteGuest"
                             >
                             Удалить
                             </button>
@@ -112,22 +113,22 @@ let deleteGuest = () => {
             </div>
 
             <div class="askGuestsMore"
-                v-if="(guests.length > 0)"
+                v-if="(storeVariables.guests.length > 0)"
                 >
                 <div>
                     <button
 
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.alone}"
-                    @click="familyProperties.alone = !familyProperties.alone,
-                            familyProperties.couple = false,
-                            familyProperties.withChildren = false,
-                            familyProperties.withoutChildren = false,
-                            familyProperties.onCar = false,
-                            familyProperties.needTransfer = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.alone}"
+                    @click="storeVariables.familyProperties.alone = !storeVariables.familyProperties.alone,
+                            storeVariables.familyProperties.couple = false,
+                            storeVariables.familyProperties.withChildren = false,
+                            storeVariables.familyProperties.withoutChildren = false,
+                            storeVariables.familyProperties.onCar = false,
+                            storeVariables.familyProperties.needTransfer = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
                     >
                         Буду один / одна
@@ -137,16 +138,16 @@ let deleteGuest = () => {
                     <button
 
                 class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.couple}"
-                    @click="familyProperties.couple = !familyProperties.couple,
-                            familyProperties.alone = false,
-                            familyProperties.withChildren = false,
-                            familyProperties.withoutChildren = false,
-                            familyProperties.onCar = false,
-                            familyProperties.needTransfer = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.couple}"
+                    @click="storeVariables.familyProperties.couple = !storeVariables.familyProperties.couple,
+                            storeVariables.familyProperties.alone = false,
+                            storeVariables.familyProperties.withChildren = false,
+                            storeVariables.familyProperties.withoutChildren = false,
+                            storeVariables.familyProperties.onCar = false,
+                            storeVariables.familyProperties.needTransfer = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
                     >
                         Буду с парой
@@ -155,22 +156,21 @@ let deleteGuest = () => {
             </div>
 
             <div class="askGuestsMore"
-                v-if="((guests.length > 0) && (familyProperties.alone || familyProperties.couple))"
+                v-if="((storeVariables.guests.length > 0) && (storeVariables.familyProperties.alone || storeVariables.familyProperties.couple))"
                 >
 
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.withChildren}" 
-                    @click="familyProperties.withChildren = !familyProperties.withChildren,
-                            familyProperties.withoutChildren = false,
-                            familyProperties.onCar = false,
-                            familyProperties.needTransfer = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.withChildren}" 
+                    @click="storeVariables.familyProperties.withChildren = !storeVariables.familyProperties.withChildren,
+                            storeVariables.familyProperties.withoutChildren = false,
+                            storeVariables.familyProperties.onCar = false,
+                            storeVariables.familyProperties.needTransfer = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
-
                     >
                         С детьми
                     </button>
@@ -178,14 +178,14 @@ let deleteGuest = () => {
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.withoutChildren}"
-                    @click="familyProperties.withoutChildren = !familyProperties.withoutChildren,
-                            familyProperties.withChildren = false,
-                            familyProperties.onCar = false,
-                            familyProperties.needTransfer = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.withoutChildren}"
+                    @click="storeVariables.familyProperties.withoutChildren = !storeVariables.familyProperties.withoutChildren,
+                            storeVariables.familyProperties.withChildren = false,
+                            storeVariables.familyProperties.onCar = false,
+                            storeVariables.familyProperties.needTransfer = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
                     >
                         Без детей
@@ -193,48 +193,49 @@ let deleteGuest = () => {
                 </div>
             </div>
             <div class="askGuestsMore"
-                v-if="((guests.length > 0) && (familyProperties.withChildren || familyProperties.withoutChildren))"
+                v-if="((storeVariables.guests.length > 0) && (storeVariables.familyProperties.withChildren || storeVariables.familyProperties.withoutChildren))"
             >
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.onCar}"
-                    @click="familyProperties.onCar = !familyProperties.onCar,
-                            familyProperties.needTransfer = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
-                            ">
+                    :class="{pressed: storeVariables.familyProperties.onCar}"
+                    @click="storeVariables.familyProperties.onCar = !storeVariables.familyProperties.onCar,
+                            storeVariables.familyProperties.needTransfer = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
+                            "
+                    >
                         На машине
                     </button>
                 </div> 
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.needTransfer}"
-                    @click="familyProperties.needTransfer = !familyProperties.needTransfer,
-                            familyProperties.onCar = false,
-                            familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.needTransfer}"
+                    @click="storeVariables.familyProperties.needTransfer = !storeVariables.familyProperties.needTransfer,
+                            storeVariables.familyProperties.onCar = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
-                            >
+                    >
                         Нужен трансфер
                     </button>
                 </div> 
             
             </div>
             <div 
-                v-if="((guests.length > 0) && (familyProperties.onCar || familyProperties.needTransfer))" 
+                v-if="((storeVariables.guests.length > 0) && (storeVariables.familyProperties.onCar || storeVariables.familyProperties.needTransfer))" 
                 class="askGuestsMore" 
                 name="Food">
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.foodDoesntMatter}"
-                    @click="familyProperties.foodDoesntMatter = !familyProperties.foodDoesntMatter,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.foodDoesntMatter}"
+                    @click="storeVariables.familyProperties.foodDoesntMatter = !storeVariables.familyProperties.foodDoesntMatter,
+                            storeVariables.familyProperties.foodMeat = false,
+                            storeVariables.familyProperties.foodFish = false
                             "
                     >
                         Не важно
@@ -243,10 +244,10 @@ let deleteGuest = () => {
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.foodMeat}"
-                    @click="familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = !familyProperties.foodMeat,
-                            familyProperties.foodFish = false
+                    :class="{pressed: storeVariables.familyProperties.foodMeat}"
+                    @click="storeVariables.familyProperties.foodMeat = !storeVariables.familyProperties.foodMeat,
+                            storeVariables.familyProperties.foodFish = false,
+                            storeVariables.familyProperties.foodDoesntMatter = false
                             "
                     >
                         Мясо
@@ -255,10 +256,10 @@ let deleteGuest = () => {
                 <div>
                     <button
                     class="askGuestsMoreButton"
-                    :class="{pressed: familyProperties.foodFish}"
-                    @click="familyProperties.foodDoesntMatter = false,
-                            familyProperties.foodMeat = false,
-                            familyProperties.foodFish = !familyProperties.foodFish
+                    :class="{pressed: storeVariables.familyProperties.foodFish}"
+                    @click="storeVariables.familyProperties.foodFish = !storeVariables.familyProperties.foodFish,
+                            storeVariables.familyProperties.foodDoesntMatter = false,
+                            storeVariables.familyProperties.foodMeat = false
                             "
                     >
                         Рыба
@@ -267,12 +268,12 @@ let deleteGuest = () => {
             </div>
 
             <button 
-            v-if="((familyProperties.foodDoesntMatter || familyProperties.foodMeat || familyProperties.foodFish) && (guests.length > 0))"
+            v-if="((storeVariables.familyProperties.foodDoesntMatter || storeVariables.familyProperties.foodMeat || storeVariables.familyProperties.foodFish) && (storeVariables.guests.length > 0))"
             class="btn send"
             @click="askGuestsResult,
-            formResults.push(guests, familyProperties),
-            guests = [],
-            familyProperties = {
+            formResults.push(storeVariables.guests, familyProperties),
+            storeVariables.guests = [],
+            storeVariables.familyProperties = {
                 alone: false,
                 couple: false,
                 withChildren: false,
@@ -300,8 +301,7 @@ let deleteGuest = () => {
         Store guest is: {{  storeVariables.guest }}
         Store guests is:{{ storeVariables.guests }}
         <br/>
-        {{ guests }}
-        <br/>
+    
         <br/>
         Form Results: {{ formResults }}
     </div>
