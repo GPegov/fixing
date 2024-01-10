@@ -65,7 +65,7 @@ const formResults = ref([])
             <div class="inputField">
                 <input 
                     class="inputs"
-                    v-model="storeVariables.guest.name" 
+                    v-model="storeVariables.guest.name"
                     type="text" 
                     placeholder="Имя Гостя"
                 >
