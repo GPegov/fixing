@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+//import { ref } from 'vue'
 import { useVariables } from '@/stores/Variables.js'
 
 const storeVariables = useVariables()
 
-let guests = ref([])
+/*let guests = ref([])
 
-/*const saveGuest = ()=>{
+const saveGuest = ()=>{
     guests.value.push({id:Date.now(), 
     name: guest.name,
     surname: guest.surname
@@ -14,7 +14,7 @@ let guests = ref([])
     guest.name = ''
     guest.surname = ''
     
-}*/
+}
 const askGuestsResult = ()=>{
     storeVariables.guests.push({
     id:Date.now(),
@@ -34,7 +34,7 @@ const familyProperties = ref({
   })
 const formResults = ref([])  
 
-/*let deleteGuest = () => {
+let deleteGuest = () => {
   guests.value = guests.value.filter(guest => guest.id !== guest.id)
   if (guests.value.length === 0) {
         storeVariables.familyProperties.value = {
@@ -61,7 +61,9 @@ const formResults = ref([])
     <div
     class="guestForm"
     >
-        <div class="addGuestsForm">
+        <form 
+            class="addGuestsForm"
+            @submit.prevent>
             <div class="inputField">
                 <input 
                     class="inputs"
@@ -80,11 +82,12 @@ const formResults = ref([])
             <button
                class="btn addGuestbtn"
                @click="storeVariables.saveGuest"
+               v-on:keyup.enter="storeVariables.saveGuest"
             >
                 Добавить гостя
             </button>
 
-        </div>
+        </form>
 
 
 
@@ -93,18 +96,18 @@ const formResults = ref([])
             <div class="guestsList">
                 <div 
                     class="guestItem" 
-                    v-for = 'newGuest in storeVariables.guests'
-                    :key="newGuest.id"
+                    v-for = '(guest, index) in storeVariables.guests'
+                    :key="guest.id"
                     >
                         <div class="guestName">
-                            <div>ID - {{ storeVariables.newGuest.id }}</div>
-                            <div class="name">Имя: {{ newGuest.name }}</div>     
-                            <div class="surname">Фамилия: {{ newGuest.surname }}</div> 
+                            
+                            <div class="name">Имя: {{ guest.name }}</div>     
+                            <div class="surname">Фамилия: {{ guest.surname }}</div> 
                         </div>
                         <div class="removeGuestDiv">
                             <button 
                             class="removeGuestBtn" 
-                            @click="storeVariables.deleteGuest"
+                            @click="storeVariables.deleteGuest(index)"
                             >
                             Удалить
                             </button>
@@ -154,7 +157,6 @@ const formResults = ref([])
                     </button>
                 </div>
             </div>
-
             <div class="askGuestsMore"
                 v-if="((storeVariables.guests.length > 0) && (storeVariables.familyProperties.alone || storeVariables.familyProperties.couple))"
                 >
@@ -270,9 +272,8 @@ const formResults = ref([])
             <button 
             v-if="((storeVariables.familyProperties.foodDoesntMatter || storeVariables.familyProperties.foodMeat || storeVariables.familyProperties.foodFish) && (storeVariables.guests.length > 0))"
             class="btn send"
-            @click="askGuestsResult,
-            formResults.push(storeVariables.guests, familyProperties),
-            storeVariables.guests = [],
+            @click="storeVariables.askGuestsResult
+            /*storeVariables.guests = [],
             storeVariables.familyProperties = {
                 alone: false,
                 couple: false,
@@ -283,7 +284,7 @@ const formResults = ref([])
                 foodDoesntMatter: false,
                 foodMeat: false,
                 foodFish: false,
-            }
+            }*/
             "
             >
                 Отправить
@@ -297,13 +298,16 @@ const formResults = ref([])
     class="stats"
     >
         Statistics:
-        <br>
+        <br/>
         Store guest is: {{  storeVariables.guest }}
+        <br/>
         Store guests is:{{ storeVariables.guests }}
         <br/>
-    
+        
         <br/>
-        Form Results: {{ formResults }}
+        
+        <br/>
+        Form Results: {{ storeVariables.formResults }}
     </div>
     
 
