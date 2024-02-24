@@ -1,54 +1,57 @@
 <template>
     <div class="Parents">
-        <h2 class="parentsTitle">Родители</h2>
-            <div class="parentsPhotos">
-                <div class="husbandsParents">
-                    <div class="parentPhotoAndText">
-                        <img class="parentPhoto" src="./img/Parents/husbandsFather1.jpg"/>
-                        <h4>Сергей Виталиевич Огурцов</h4>
-                        <p>Сварщик VI разряда. Почётный работник ОАО "Воркутинский механический завод"</p>
-                    </div>
-                    <div class="parentPhotoAndText">
-                        <img class="parentPhoto" src="./img/Parents/husbandsMother1.jpg"/>
-                        <h4>Екатерина Андреевна Огурцова</h4>
-                        <p>Швея высшей категории. Сотрудница ОАО "Воркутинская швейная фабрика"</p>
-                    </div>
-                </div>
-                <div class="wifesParents">
+
+        <h1 class="mainHeader">Наши родители</h1>
+
+        <h2 class="parentsTitle">Родители жениха</h2>
+        <div class="husbandsParents">
+            <div class="parentPhotoAndText">
+                <img class="parentPhoto" src="./img/Parents/husbandsFather1.jpg"/>
+                <h4 class="parentName">{{ storePersonification.groomsFatherFullName }}</h4>
+                <p class="parentOccupation">{{ storePersonification.groomsFatherOccupation }}</p>
+            </div>
+            <div class="parentPhotoAndText">
+                <img class="parentPhoto" src="./img/Parents/husbandsMother1.jpg"/>
+                <h4 class="parentName">{{ storePersonification.groomsMotherFullName }}</h4>
+                <p class="parentOccupation">{{ storePersonification.groomsMotherOccupation }}</p>
+            </div>
+        </div>
+
+        <h2 class="parentsTitle">Родители невесты</h2>
+        <div class="wifesParents">
                     <div class="parentPhotoAndText">
                         <img class="parentPhoto" src="./img/Parents/wifesFather1.jpg"/>
-                        <h4>Олег Вениаминович Трубецкой</h4>
-                        <p>Генеральный директор ООО «Газпром трансгаз Санкт-Петербург»</p>
+                        <h4 class="parentName">{{ storePersonification.bridesFatherFullName }}</h4>
+                        <p class="parentOccupation">{{ storePersonification.bridesFatherOccupation }}</p>
                     </div>
                     <div class="parentPhotoAndText">
                         <img class="parentPhoto" src="./img/Parents/wifesMother1.jpg"/>
-                        <h4>Марианна Владимировна Трубецкая</h4>
-                        <p>Владелица сети салонов цветов "Гортензия"</p>
+                        <h4 class="parentName">{{ storePersonification.bridesMotherFullName }}</h4>
+                        <p class="parentOccupation">{{ storePersonification.bridesMotherOccupation }}</p>
                     </div>
                 </div>
-            </div>
         </div>
+        
 </template>
 
-
 <script setup>
-
+import { usePersonification } from '@/stores/Personification'
+const storePersonification = usePersonification()
 </script>
 
+<style>
 
-<style scoped>
 
 .parentsTitle {
-    color: rgb(68, 68, 68);
-    margin-top: 35px;
-    margin-bottom: 35px;
+    color: rgb(82, 82, 82);
+    margin-top: 70px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
-    font-size: 22pt;
+    font-size: 26pt;
     font-family:'Circe Light', sans-serif !important;
 }
 .parentPhotoAndText {
-    
     padding-right: 20px;
     text-align: center;
 }
@@ -61,11 +64,14 @@
 }
 .husbandsParents {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .wifesParents {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+.mainHeader {
+    
 }
 }
 </style>

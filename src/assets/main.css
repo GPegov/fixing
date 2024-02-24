@@ -1,0 +1,9 @@
+.mainHeader {
+    color: rgb(104, 104, 104);
+    text-shadow: 2px 2px #ccc;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 36pt;
+    font-family:'Circe Light', sans-serif !important;
+}

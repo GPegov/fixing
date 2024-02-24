@@ -1,63 +1,10 @@
 <script setup>
-//import { ref } from 'vue'
 import { useVariables } from '@/stores/Variables.js'
-
 const storeVariables = useVariables()
-
-/*let guests = ref([])
-
-const saveGuest = ()=>{
-    guests.value.push({id:Date.now(), 
-    name: guest.name,
-    surname: guest.surname
-    })
-    guest.name = ''
-    guest.surname = ''
-    
-}
-const askGuestsResult = ()=>{
-    storeVariables.guests.push({
-    id:Date.now(),
-    properties: storeVariables.familyProperties})
-}
-
-const familyProperties = ref({
-  alone: false,
-  couple: false,
-  withChildren: false,
-  withoutChildren: false,
-  onCar: false,
-  needTransfer: false,
-  foodDoesntMatter: false,
-  foodMeat: false,
-  foodFish: false,
-  })
-const formResults = ref([])  
-
-let deleteGuest = () => {
-  guests.value = guests.value.filter(guest => guest.id !== guest.id)
-  if (guests.value.length === 0) {
-        storeVariables.familyProperties.value = {
-            alone: false,
-            couple: false,
-            withChildren: false,
-            withoutChildren: false,
-            onCar: false,
-            needTransfer: false,
-            foodDoesntMatter: false,
-            foodMeat: false,
-            foodFish: false,
-        }
-  }
-}*/
-
-
-
 </script>
- 
-
 
 <template>
+    <h1 class="mainHeader">Подтвердите присутствие</h1>
     <div
     class="guestForm"
     >
@@ -78,7 +25,6 @@ let deleteGuest = () => {
                     placeholder="Фамилия Гостя"
                 >
             </div>
-        
             <button
                class="btn addGuestbtn"
                @click="storeVariables.saveGuest"
@@ -86,13 +32,9 @@ let deleteGuest = () => {
             >
                 Добавить гостя
             </button>
-
         </form>
 
-
-
         <div class="askGuests">
-            
             <div class="guestsList">
                 <div 
                     class="guestItem" 
@@ -100,7 +42,6 @@ let deleteGuest = () => {
                     :key="guest.id"
                     >
                         <div class="guestName">
-                            
                             <div class="name">Имя: {{ guest.name }}</div>     
                             <div class="surname">Фамилия: {{ guest.surname }}</div> 
                         </div>
@@ -227,9 +168,8 @@ let deleteGuest = () => {
                 </div> 
             
             </div>
-            <div 
+            <div class="askGuestsMore"
                 v-if="((storeVariables.guests.length > 0) && (storeVariables.familyProperties.onCar || storeVariables.familyProperties.needTransfer))" 
-                class="askGuestsMore" 
                 name="Food">
                 <div>
                     <button
@@ -273,18 +213,6 @@ let deleteGuest = () => {
             v-if="((storeVariables.familyProperties.foodDoesntMatter || storeVariables.familyProperties.foodMeat || storeVariables.familyProperties.foodFish) && (storeVariables.guests.length > 0))"
             class="btn send"
             @click="storeVariables.askGuestsResult
-            /*storeVariables.guests = [],
-            storeVariables.familyProperties = {
-                alone: false,
-                couple: false,
-                withChildren: false,
-                withoutChildren: false,
-                onCar: false,
-                needTransfer: false,
-                foodDoesntMatter: false,
-                foodMeat: false,
-                foodFish: false,
-            }*/
             "
             >
                 Отправить
@@ -293,23 +221,6 @@ let deleteGuest = () => {
 
         
     </div>
-    
-    <div
-    class="stats"
-    >
-        Statistics:
-        <br/>
-        Store guest is: {{  storeVariables.guest }}
-        <br/>
-        Store guests is:{{ storeVariables.guests }}
-        <br/>
-        
-        <br/>
-        
-        <br/>
-        Form Results: {{ storeVariables.formResults }}
-    </div>
-    
 
 </template>
 
@@ -384,21 +295,13 @@ let deleteGuest = () => {
     flex-direction: column;
     
 }
-.stats {
-    margin-top: 40px;
-    padding: 10px 15px;
-    background: white;
-    color: rgb(24, 93, 133);
-    border: 1px solid rgb(24, 93, 133);
-    border-radius: 10px;
-    cursor:pointer;
-}
 .inputs {
     width: 100%;
     border: 1px solid rgb(24, 93, 133);
     padding: 10px 15px;
     margin-top: 15px;
     border-radius: 10px;
+    font-size: 14pt;
 }
 
 .btn {

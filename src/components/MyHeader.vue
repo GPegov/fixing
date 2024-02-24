@@ -2,11 +2,11 @@
     
     <div class="invitation">
         <img class="invitHeader" src="./img/7.png" alt="">
-        <h2 class="theDate">Торжество состоится 30 февраля 2024г. в 15.00</h2>
+        <h2 class="theDate">{{ storePersonification.dateOfMarriage }}</h2>
         
-        <p class="invitationText">Все вы знаете их как любимых родственников, верных друзей и надёжных коллег но наступит день, и мы больше не сможем воспринимать их отдельно друг от друга!</p>
-        <p class="invitationText">В этот день два любящих сердца соединятся воедино, и появится новая, счастливая семья!</p>
-        <p class="invitationText">Они будут рады видеть Вас и Ваших спутников на своём свадебном торжестве!</p>
+        <p class="invitationText">{{ storePersonification.headingParagraphSugaryIntro_1 }}</p>
+        <p class="invitationText">{{ storePersonification.headingParagraphSugaryIntro_2 }}</p>
+        <p class="invitationText">{{ storePersonification.headingParagraphSugaryIntro_3 }}</p>
         
 
     </div>
@@ -15,7 +15,8 @@
 
 
 <script setup>
-
+import { usePersonification } from '@/stores/Personification'
+const storePersonification = usePersonification()
 </script>
 
 

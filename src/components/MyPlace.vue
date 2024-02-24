@@ -1,21 +1,22 @@
 <template>
-    <h2 class="header_place">Место проведения мероприятия</h2>
+    <h2 class="mainHeader">Место проведения мероприятия</h2>
         <div class="placeDescription">
             <div class="placeDescription1">
                 <h3>Сбор Гостей</h3>
-                <p>Территориальный отдел ЗАГСа г. Воркуты</p>
-                <p>Адрес: г. Воркута, ул. Ленина д. 54</p> 
+                <p></p>
+                <p></p> 
             </div>
             <div class="placeDescription2">
                 <h3>Торжество</h3>
-                <p>Ресторан "Додо Пицца"</p>
-                <p>Адрес: г. Воркута, ул. Ленина д. 35</p> 
+                <p>{{ storePersonification.baquetPlaceName }}</p>
+                <p>{{ storePersonification.banquetAddress }}</p> 
             </div>
         </div>
 </template>
 
 <script setup>
-    
+import { usePersonification } from '@/stores/Personification'
+const storePersonification = usePersonification()
 </script>
 
 <style lang="scss" scoped>
