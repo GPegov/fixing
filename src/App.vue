@@ -4,6 +4,7 @@
         <my-header />
         <MyAskGuests />
         <my-parents />
+        <MySeatingPlan/>
         <my-place />
     </div>
 </template>
@@ -15,6 +16,7 @@ import MyPlace from '@/components/MyPlace.vue';
 import MyParents from '@/components/MyParents.vue';
 import MyAskGuests from '@/components/MyAskGuests.vue';
 import MySwiper from './components/MySwiper.vue';     
+import MySeatingPlan from './components/MySeatingPlan.vue';
 
 
 </script>

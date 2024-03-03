@@ -48,7 +48,7 @@ export const usePersonification = defineStore('personification', {
         ceremonyPlaceName: 'Территориальный отдел ЗАГСа г. Воркуты',
         ceremonyAddress: 'Адрес: г. Воркута, ул. Ленина д. 54',
     //Banquet
-        baquetPlaceName: 'Семейный ресторан "OLIVA"',
+        banquetPlaceName: 'Семейный ресторан "OLIVA"',
         banquetAddress: 'г. Воркута, ул. Мира 15',
 
 

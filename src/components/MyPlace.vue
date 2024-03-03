@@ -3,12 +3,12 @@
         <div class="placeDescription">
             <div class="placeDescription1">
                 <h3>Сбор Гостей</h3>
-                <p></p>
-                <p></p> 
+                <p>{{ storePersonification.ceremonyPlaceName }}</p>
+                <p>{{ storePersonification.ceremonyAddress }}</p> 
             </div>
             <div class="placeDescription2">
                 <h3>Торжество</h3>
-                <p>{{ storePersonification.baquetPlaceName }}</p>
+                <p>{{ storePersonification.banquetPlaceName }}</p>
                 <p>{{ storePersonification.banquetAddress }}</p> 
             </div>
         </div>
@@ -41,12 +41,16 @@ const storePersonification = usePersonification()
 
 }
 .placeDescription1 {
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
-    max-width: 50%
+    
 }
 .placeDescription2 {
     display: flex;
     flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 </style>
