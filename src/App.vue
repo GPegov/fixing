@@ -33,8 +33,8 @@ import MySeatingPlan from './components/MySeatingPlan.vue';
     box-sizing: border-box;
 }
 .app {
+    width: 100%;
     
-    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Avenir', Arial, Helvetica, sans-serif;
